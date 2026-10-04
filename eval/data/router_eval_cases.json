@@ -1,0 +1,702 @@
+[
+  {
+    "case_id": "route_1",
+    "category": "STREETLIGHT_OUT",
+    "sector": "SEC-1",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_2",
+    "category": "SIGNAL_FAULT",
+    "sector": "SEC-2",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_3",
+    "category": "POTHOLE",
+    "sector": "SEC-3",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_4",
+    "category": "DAMAGED_SIGNAGE",
+    "sector": "SEC-4",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_5",
+    "category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-5",
+    "expected_department": "MOH_SANITATION",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_6",
+    "category": "DRAIN_BLOCKED",
+    "sector": "SEC-6",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_7",
+    "category": "MANHOLE_COVER",
+    "sector": "SEC-7",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_8",
+    "category": "WATER_LEAK",
+    "sector": "SEC-8",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_9",
+    "category": "UNKNOWN_CIVIC_NOISE",
+    "sector": "SEC-9",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_10",
+    "category": "VAGUE_COMPLAINT",
+    "sector": "SEC-10",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_11",
+    "category": "STREETLIGHT_OUT",
+    "sector": "SEC-11",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_12",
+    "category": "SIGNAL_FAULT",
+    "sector": "SEC-12",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_13",
+    "category": "POTHOLE",
+    "sector": "SEC-13",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_14",
+    "category": "DAMAGED_SIGNAGE",
+    "sector": "SEC-14",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_15",
+    "category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-15",
+    "expected_department": "MOH_SANITATION",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_16",
+    "category": "DRAIN_BLOCKED",
+    "sector": "SEC-16",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_17",
+    "category": "MANHOLE_COVER",
+    "sector": "SEC-17",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_18",
+    "category": "WATER_LEAK",
+    "sector": "SEC-18",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_19",
+    "category": "UNKNOWN_CIVIC_NOISE",
+    "sector": "SEC-19",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_20",
+    "category": "VAGUE_COMPLAINT",
+    "sector": "SEC-20",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_21",
+    "category": "STREETLIGHT_OUT",
+    "sector": "SEC-21",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_22",
+    "category": "SIGNAL_FAULT",
+    "sector": "SEC-22",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_23",
+    "category": "POTHOLE",
+    "sector": "SEC-23",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_24",
+    "category": "DAMAGED_SIGNAGE",
+    "sector": "SEC-24",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_25",
+    "category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-25",
+    "expected_department": "MOH_SANITATION",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_26",
+    "category": "DRAIN_BLOCKED",
+    "sector": "SEC-26",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_27",
+    "category": "MANHOLE_COVER",
+    "sector": "SEC-27",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_28",
+    "category": "WATER_LEAK",
+    "sector": "SEC-28",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_29",
+    "category": "UNKNOWN_CIVIC_NOISE",
+    "sector": "SEC-29",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_30",
+    "category": "VAGUE_COMPLAINT",
+    "sector": "SEC-30",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_31",
+    "category": "STREETLIGHT_OUT",
+    "sector": "SEC-1",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_32",
+    "category": "SIGNAL_FAULT",
+    "sector": "SEC-2",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_33",
+    "category": "POTHOLE",
+    "sector": "SEC-3",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_34",
+    "category": "DAMAGED_SIGNAGE",
+    "sector": "SEC-4",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_35",
+    "category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-5",
+    "expected_department": "MOH_SANITATION",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_36",
+    "category": "DRAIN_BLOCKED",
+    "sector": "SEC-6",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_37",
+    "category": "MANHOLE_COVER",
+    "sector": "SEC-7",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_38",
+    "category": "WATER_LEAK",
+    "sector": "SEC-8",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_39",
+    "category": "UNKNOWN_CIVIC_NOISE",
+    "sector": "SEC-9",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_40",
+    "category": "VAGUE_COMPLAINT",
+    "sector": "SEC-10",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_41",
+    "category": "STREETLIGHT_OUT",
+    "sector": "SEC-11",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_42",
+    "category": "SIGNAL_FAULT",
+    "sector": "SEC-12",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_43",
+    "category": "POTHOLE",
+    "sector": "SEC-13",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_44",
+    "category": "DAMAGED_SIGNAGE",
+    "sector": "SEC-14",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_45",
+    "category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-15",
+    "expected_department": "MOH_SANITATION",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_46",
+    "category": "DRAIN_BLOCKED",
+    "sector": "SEC-16",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_47",
+    "category": "MANHOLE_COVER",
+    "sector": "SEC-17",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_48",
+    "category": "WATER_LEAK",
+    "sector": "SEC-18",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_49",
+    "category": "UNKNOWN_CIVIC_NOISE",
+    "sector": "SEC-19",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_50",
+    "category": "VAGUE_COMPLAINT",
+    "sector": "SEC-20",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_51",
+    "category": "STREETLIGHT_OUT",
+    "sector": "SEC-21",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_52",
+    "category": "SIGNAL_FAULT",
+    "sector": "SEC-22",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_53",
+    "category": "POTHOLE",
+    "sector": "SEC-23",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_54",
+    "category": "DAMAGED_SIGNAGE",
+    "sector": "SEC-24",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_55",
+    "category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-25",
+    "expected_department": "MOH_SANITATION",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_56",
+    "category": "DRAIN_BLOCKED",
+    "sector": "SEC-26",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_57",
+    "category": "MANHOLE_COVER",
+    "sector": "SEC-27",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_58",
+    "category": "WATER_LEAK",
+    "sector": "SEC-28",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_59",
+    "category": "UNKNOWN_CIVIC_NOISE",
+    "sector": "SEC-29",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_60",
+    "category": "VAGUE_COMPLAINT",
+    "sector": "SEC-30",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_61",
+    "category": "STREETLIGHT_OUT",
+    "sector": "SEC-1",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_62",
+    "category": "SIGNAL_FAULT",
+    "sector": "SEC-2",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_63",
+    "category": "POTHOLE",
+    "sector": "SEC-3",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_64",
+    "category": "DAMAGED_SIGNAGE",
+    "sector": "SEC-4",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_65",
+    "category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-5",
+    "expected_department": "MOH_SANITATION",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_66",
+    "category": "DRAIN_BLOCKED",
+    "sector": "SEC-6",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_67",
+    "category": "MANHOLE_COVER",
+    "sector": "SEC-7",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_68",
+    "category": "WATER_LEAK",
+    "sector": "SEC-8",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_69",
+    "category": "UNKNOWN_CIVIC_NOISE",
+    "sector": "SEC-9",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_70",
+    "category": "VAGUE_COMPLAINT",
+    "sector": "SEC-10",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_71",
+    "category": "STREETLIGHT_OUT",
+    "sector": "SEC-11",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_72",
+    "category": "SIGNAL_FAULT",
+    "sector": "SEC-12",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_73",
+    "category": "POTHOLE",
+    "sector": "SEC-13",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_74",
+    "category": "DAMAGED_SIGNAGE",
+    "sector": "SEC-14",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_75",
+    "category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-15",
+    "expected_department": "MOH_SANITATION",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_76",
+    "category": "DRAIN_BLOCKED",
+    "sector": "SEC-16",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_77",
+    "category": "MANHOLE_COVER",
+    "sector": "SEC-17",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_78",
+    "category": "WATER_LEAK",
+    "sector": "SEC-18",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_79",
+    "category": "UNKNOWN_CIVIC_NOISE",
+    "sector": "SEC-19",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_80",
+    "category": "VAGUE_COMPLAINT",
+    "sector": "SEC-20",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_81",
+    "category": "STREETLIGHT_OUT",
+    "sector": "SEC-21",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_82",
+    "category": "SIGNAL_FAULT",
+    "sector": "SEC-22",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_83",
+    "category": "POTHOLE",
+    "sector": "SEC-23",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_84",
+    "category": "DAMAGED_SIGNAGE",
+    "sector": "SEC-24",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_85",
+    "category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-25",
+    "expected_department": "MOH_SANITATION",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_86",
+    "category": "DRAIN_BLOCKED",
+    "sector": "SEC-26",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_87",
+    "category": "MANHOLE_COVER",
+    "sector": "SEC-27",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_88",
+    "category": "WATER_LEAK",
+    "sector": "SEC-28",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_89",
+    "category": "UNKNOWN_CIVIC_NOISE",
+    "sector": "SEC-29",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_90",
+    "category": "VAGUE_COMPLAINT",
+    "sector": "SEC-30",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_91",
+    "category": "STREETLIGHT_OUT",
+    "sector": "SEC-1",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_92",
+    "category": "SIGNAL_FAULT",
+    "sector": "SEC-2",
+    "expected_department": "ELECTRICAL",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_93",
+    "category": "POTHOLE",
+    "sector": "SEC-3",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_94",
+    "category": "DAMAGED_SIGNAGE",
+    "sector": "SEC-4",
+    "expected_department": "ROADS_BRIDGES",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_95",
+    "category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-5",
+    "expected_department": "MOH_SANITATION",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_96",
+    "category": "DRAIN_BLOCKED",
+    "sector": "SEC-6",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_97",
+    "category": "MANHOLE_COVER",
+    "sector": "SEC-7",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_98",
+    "category": "WATER_LEAK",
+    "sector": "SEC-8",
+    "expected_department": "PUBLIC_HEALTH",
+    "should_abstain": false
+  },
+  {
+    "case_id": "route_99",
+    "category": "UNKNOWN_CIVIC_NOISE",
+    "sector": "SEC-9",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  },
+  {
+    "case_id": "route_100",
+    "category": "VAGUE_COMPLAINT",
+    "sector": "SEC-10",
+    "expected_department": "ABSTAIN",
+    "should_abstain": true
+  }
+]

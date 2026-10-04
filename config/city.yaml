@@ -1,0 +1,141 @@
+# Pakka Hal: City Configuration for Chandigarh
+city:
+  name: "Chandigarh"
+  state: "Chandigarh (UT)"
+  country: "IN"
+  timezone: "Asia/Kolkata"
+  center:
+    lat: 30.7333
+    lon: 76.7794
+  bounding_box:
+    min_lat: 30.6500
+    max_lat: 30.8200
+    min_lon: 76.6800
+    max_lon: 76.8800
+  emergency_contacts:
+    police_fire_ambulance: "112"
+    women_helpline: "1091"
+    child_helpline: "1098"
+    mc_toll_free: "1800-180-2114"
+  supported_languages:
+    - code: "en"
+      name: "English"
+    - code: "hi"
+      name: "Hindi"
+      scripts: ["Deva", "Latn"]
+    - code: "pa"
+      name: "Punjabi"
+      scripts: ["Guru", "Latn"]
+
+sectors:
+  # Chandigarh is famously laid out in grid sectors (Sector 1 to 60+)
+  # Each sector has standard civic amenities and ward mappings
+  total_sectors: 60
+  sample_anchors:
+    - id: "SEC-17"
+      name: "Sector 17 (City Centre)"
+      lat: 30.7414
+      lon: 76.7845
+      ward: 2
+    - id: "SEC-22"
+      name: "Sector 22"
+      lat: 30.7333
+      lon: 76.7725
+      ward: 3
+    - id: "SEC-35"
+      name: "Sector 35"
+      lat: 30.7225
+      lon: 76.7621
+      ward: 5
+    - id: "SEC-43"
+      name: "Sector 43 (ISBT Bus Stand)"
+      lat: 30.7180
+      lon: 76.7450
+      ward: 6
+    - id: "IT-PARK"
+      name: "Rajiv Gandhi Chandigarh Technology Park"
+      lat: 30.7250
+      lon: 76.8400
+      ward: 1
+
+departments:
+  - id: "ROADS_BRIDGES"
+    name: "Engineering Department - Roads & B&R Wing"
+    mc_code: "ENG_ROADS"
+    email: "ee.roads-chd@nic.in"  # Marked for verification
+    sla_hours: 72
+    service_codes: ["POTHOLE", "DAMAGED_SIGNAGE"]
+  - id: "PUBLIC_HEALTH"
+    name: "Engineering Department - Public Health Wing"
+    mc_code: "ENG_PH"
+    email: "ee.ph-chd@nic.in"  # Marked for verification
+    sla_hours: 48
+    service_codes: ["WATER_LEAK", "DRAIN_BLOCKED", "MANHOLE_COVER"]
+  - id: "ELECTRICAL"
+    name: "Engineering Department - Electrical Wing"
+    mc_code: "ENG_ELEC"
+    email: "ee.elec-chd@nic.in"  # Marked for verification
+    sla_hours: 24
+    service_codes: ["STREETLIGHT_OUT", "SIGNAL_FAULT"]
+  - id: "MOH_SANITATION"
+    name: "Medical Officer of Health (MOH) - Sanitation Wing"
+    mc_code: "MOH_SAN"
+    email: "moh.sanitation-chd@nic.in"  # Marked for verification
+    sla_hours: 24
+    service_codes: ["GARBAGE_OVERFLOW"]
+  - id: "HORTICULTURE"
+    name: "Horticulture Department"
+    mc_code: "ENG_HORT"
+    email: "ee.hort-chd@nic.in"  # Marked for verification
+    sla_hours: 96
+    service_codes: ["FALLEN_TREE_BRANCH"]
+
+service_types:
+  - service_code: "STREETLIGHT_OUT"
+    service_name: "Streetlight Malfunction or Dark Spot"
+    description: "Streetlights not functioning, flickering, or hazardous exposed wiring."
+    metadata: true
+    type: "realtime"
+    keywords: ["batti", "light", "channi", "streetlight", "roshni", "bijli", "pole", "bulb", "dark"]
+  - service_code: "POTHOLE"
+    service_name: "Pothole or Damaged Road Surface"
+    description: "Road surface depression, crater, or severe asphalt damage affecting vehicle or pedestrian safety."
+    metadata: true
+    type: "realtime"
+    keywords: ["khadda", "gaddha", "sarak", "road", "pothole", "asphalt", "tooti", "tuti"]
+  - service_code: "GARBAGE_OVERFLOW"
+    service_name: "Overflowing Garbage Dump or Litter Spot"
+    description: "Solid waste overflow, uncollected municipal dumpster, or unauthorized garbage dumping."
+    metadata: true
+    type: "realtime"
+    keywords: ["kuda", "koora", "kachra", "dustbin", "dumpster", "dhalav", "safai", "garbage", "trash"]
+  - service_code: "DRAIN_BLOCKED"
+    service_name: "Blocked Drain or Stormwater Overflow"
+    description: "Clogged stormwater drains, waterlogging, or blocked sewage channels."
+    metadata: true
+    type: "realtime"
+    keywords: ["nala", "naali", "drain", "waterlogging", "paani", "overflow", "gutter"]
+  - service_code: "MANHOLE_COVER"
+    service_name: "Open or Damaged Manhole Cover"
+    description: "Missing, broken, or misaligned manhole cover posing imminent risk of injury."
+    metadata: true
+    type: "realtime"
+    keywords: ["dhakkan", "cover", "manhole", "chamber", "open manhole", "gutter cover"]
+  - service_code: "SIGNAL_FAULT"
+    service_name: "Traffic Signal Failure"
+    description: "Traffic light malfunctioning, unpowered, or stuck on single phase."
+    metadata: true
+    type: "realtime"
+    keywords: ["traffic light", "signal", "batti", "chowk", "red light"]
+  - service_code: "DAMAGED_SIGNAGE"
+    service_name: "Damaged or Fallen Civic Signage"
+    description: "Direction board, sector sign, or street sign bent, missing, or obscured."
+    metadata: true
+    type: "batch"
+    keywords: ["board", "sign", "sector sign", "signboard", "direction"]
+  - service_code: "WATER_LEAK"
+    service_name: "Drinking Water Pipeline Leakage"
+    description: "Municipal supply water pipeline burst, leaking valve, or potable water wastage."
+    metadata: true
+    type: "realtime"
+    keywords: ["paani leak", "water leak", "pipeline", "supply", "jal"]

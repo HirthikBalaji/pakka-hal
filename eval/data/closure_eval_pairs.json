@@ -1,0 +1,482 @@
+[
+  {
+    "pair_id": "closure_pos_1",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 15.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_2",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 16.5,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_3",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 18.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_4",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 19.5,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_5",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 21.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_6",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 22.5,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_7",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 24.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_8",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 25.5,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_9",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 27.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_10",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 28.5,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_11",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 30.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_12",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 31.5,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_13",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 33.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_14",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 34.5,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_15",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 36.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_16",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 37.5,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_17",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 39.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_18",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 40.5,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_19",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 42.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_20",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 43.5,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_21",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 45.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_22",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 46.5,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_23",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 48.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_24",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 49.5,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_25",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 51.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_26",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 52.5,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_27",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 54.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_28",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 55.5,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_29",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 57.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_pos_30",
+    "ground_truth_fixed": true,
+    "worker_distance_m": 58.5,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Bulb repaired and debris removed on site."
+  },
+  {
+    "pair_id": "closure_reused_1",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 20.0,
+    "is_reused_photo": true,
+    "defect_unresolved": false,
+    "notes": "Reused photo identical to before photo."
+  },
+  {
+    "pair_id": "closure_reused_2",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 20.0,
+    "is_reused_photo": true,
+    "defect_unresolved": false,
+    "notes": "Reused photo identical to before photo."
+  },
+  {
+    "pair_id": "closure_reused_3",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 20.0,
+    "is_reused_photo": true,
+    "defect_unresolved": false,
+    "notes": "Reused photo identical to before photo."
+  },
+  {
+    "pair_id": "closure_reused_4",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 20.0,
+    "is_reused_photo": true,
+    "defect_unresolved": false,
+    "notes": "Reused photo identical to before photo."
+  },
+  {
+    "pair_id": "closure_reused_5",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 20.0,
+    "is_reused_photo": true,
+    "defect_unresolved": false,
+    "notes": "Reused photo identical to before photo."
+  },
+  {
+    "pair_id": "closure_reused_6",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 20.0,
+    "is_reused_photo": true,
+    "defect_unresolved": false,
+    "notes": "Reused photo identical to before photo."
+  },
+  {
+    "pair_id": "closure_reused_7",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 20.0,
+    "is_reused_photo": true,
+    "defect_unresolved": false,
+    "notes": "Reused photo identical to before photo."
+  },
+  {
+    "pair_id": "closure_reused_8",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 20.0,
+    "is_reused_photo": true,
+    "defect_unresolved": false,
+    "notes": "Reused photo identical to before photo."
+  },
+  {
+    "pair_id": "closure_reused_9",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 20.0,
+    "is_reused_photo": true,
+    "defect_unresolved": false,
+    "notes": "Reused photo identical to before photo."
+  },
+  {
+    "pair_id": "closure_reused_10",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 20.0,
+    "is_reused_photo": true,
+    "defect_unresolved": false,
+    "notes": "Reused photo identical to before photo."
+  },
+  {
+    "pair_id": "closure_far_1",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 1500.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Worker located 2km away from site."
+  },
+  {
+    "pair_id": "closure_far_2",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 1700.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Worker located 2km away from site."
+  },
+  {
+    "pair_id": "closure_far_3",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 1900.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Worker located 2km away from site."
+  },
+  {
+    "pair_id": "closure_far_4",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 2100.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Worker located 2km away from site."
+  },
+  {
+    "pair_id": "closure_far_5",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 2300.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Worker located 2km away from site."
+  },
+  {
+    "pair_id": "closure_far_6",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 2500.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Worker located 2km away from site."
+  },
+  {
+    "pair_id": "closure_far_7",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 2700.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Worker located 2km away from site."
+  },
+  {
+    "pair_id": "closure_far_8",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 2900.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Worker located 2km away from site."
+  },
+  {
+    "pair_id": "closure_far_9",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 3100.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Worker located 2km away from site."
+  },
+  {
+    "pair_id": "closure_far_10",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 3300.0,
+    "is_reused_photo": false,
+    "defect_unresolved": false,
+    "notes": "Worker located 2km away from site."
+  },
+  {
+    "pair_id": "closure_unresolved_1",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 25.0,
+    "is_reused_photo": false,
+    "defect_unresolved": true,
+    "notes": "adversarial: defect still present."
+  },
+  {
+    "pair_id": "closure_unresolved_2",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 25.0,
+    "is_reused_photo": false,
+    "defect_unresolved": true,
+    "notes": "adversarial: defect still present."
+  },
+  {
+    "pair_id": "closure_unresolved_3",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 25.0,
+    "is_reused_photo": false,
+    "defect_unresolved": true,
+    "notes": "adversarial: defect still present."
+  },
+  {
+    "pair_id": "closure_unresolved_4",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 25.0,
+    "is_reused_photo": false,
+    "defect_unresolved": true,
+    "notes": "adversarial: defect still present."
+  },
+  {
+    "pair_id": "closure_unresolved_5",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 25.0,
+    "is_reused_photo": false,
+    "defect_unresolved": true,
+    "notes": "adversarial: defect still present."
+  },
+  {
+    "pair_id": "closure_unresolved_6",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 25.0,
+    "is_reused_photo": false,
+    "defect_unresolved": true,
+    "notes": "adversarial: defect still present."
+  },
+  {
+    "pair_id": "closure_unresolved_7",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 25.0,
+    "is_reused_photo": false,
+    "defect_unresolved": true,
+    "notes": "adversarial: defect still present."
+  },
+  {
+    "pair_id": "closure_unresolved_8",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 25.0,
+    "is_reused_photo": false,
+    "defect_unresolved": true,
+    "notes": "adversarial: defect still present."
+  },
+  {
+    "pair_id": "closure_unresolved_9",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 25.0,
+    "is_reused_photo": false,
+    "defect_unresolved": true,
+    "notes": "adversarial: defect still present."
+  },
+  {
+    "pair_id": "closure_unresolved_10",
+    "ground_truth_fixed": false,
+    "worker_distance_m": 25.0,
+    "is_reused_photo": false,
+    "defect_unresolved": true,
+    "notes": "adversarial: defect still present."
+  }
+]

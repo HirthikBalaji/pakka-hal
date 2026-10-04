@@ -1,0 +1,1002 @@
+[
+  {
+    "cluster_id": "clust_1",
+    "canonical_category": "STREETLIGHT_OUT",
+    "sector": "SEC-1",
+    "reports": [
+      {
+        "desc": "Broken streetlight out in SEC-1",
+        "lat": 30.73,
+        "lon": 76.77,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-1 de vich streetlight out kharab hai",
+        "lat": 30.7301,
+        "lon": 76.76989999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-1 par streetlight out ki samasya hai",
+        "lat": 30.7299,
+        "lon": 76.7701,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_2",
+    "canonical_category": "POTHOLE",
+    "sector": "SEC-2",
+    "reports": [
+      {
+        "desc": "Broken pothole in SEC-2",
+        "lat": 30.732,
+        "lon": 76.77199999999999,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-2 de vich pothole kharab hai",
+        "lat": 30.7321,
+        "lon": 76.77189999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-2 par pothole ki samasya hai",
+        "lat": 30.7319,
+        "lon": 76.7721,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_3",
+    "canonical_category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-3",
+    "reports": [
+      {
+        "desc": "Broken garbage overflow in SEC-3",
+        "lat": 30.734,
+        "lon": 76.774,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-3 de vich garbage overflow kharab hai",
+        "lat": 30.7341,
+        "lon": 76.7739,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-3 par garbage overflow ki samasya hai",
+        "lat": 30.733900000000002,
+        "lon": 76.7741,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_4",
+    "canonical_category": "DRAIN_BLOCKED",
+    "sector": "SEC-4",
+    "reports": [
+      {
+        "desc": "Broken drain blocked in SEC-4",
+        "lat": 30.736,
+        "lon": 76.776,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-4 de vich drain blocked kharab hai",
+        "lat": 30.7361,
+        "lon": 76.7759,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-4 par drain blocked ki samasya hai",
+        "lat": 30.7359,
+        "lon": 76.7761,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_5",
+    "canonical_category": "STREETLIGHT_OUT",
+    "sector": "SEC-5",
+    "reports": [
+      {
+        "desc": "Broken streetlight out in SEC-5",
+        "lat": 30.738,
+        "lon": 76.77799999999999,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-5 de vich streetlight out kharab hai",
+        "lat": 30.7381,
+        "lon": 76.77789999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-5 par streetlight out ki samasya hai",
+        "lat": 30.7379,
+        "lon": 76.7781,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_6",
+    "canonical_category": "POTHOLE",
+    "sector": "SEC-6",
+    "reports": [
+      {
+        "desc": "Broken pothole in SEC-6",
+        "lat": 30.740000000000002,
+        "lon": 76.78,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-6 de vich pothole kharab hai",
+        "lat": 30.7401,
+        "lon": 76.7799,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-6 par pothole ki samasya hai",
+        "lat": 30.739900000000002,
+        "lon": 76.7801,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_7",
+    "canonical_category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-7",
+    "reports": [
+      {
+        "desc": "Broken garbage overflow in SEC-7",
+        "lat": 30.742,
+        "lon": 76.782,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-7 de vich garbage overflow kharab hai",
+        "lat": 30.7421,
+        "lon": 76.7819,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-7 par garbage overflow ki samasya hai",
+        "lat": 30.7419,
+        "lon": 76.7821,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_8",
+    "canonical_category": "DRAIN_BLOCKED",
+    "sector": "SEC-8",
+    "reports": [
+      {
+        "desc": "Broken drain blocked in SEC-8",
+        "lat": 30.744,
+        "lon": 76.78399999999999,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-8 de vich drain blocked kharab hai",
+        "lat": 30.7441,
+        "lon": 76.78389999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-8 par drain blocked ki samasya hai",
+        "lat": 30.7439,
+        "lon": 76.7841,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_9",
+    "canonical_category": "STREETLIGHT_OUT",
+    "sector": "SEC-9",
+    "reports": [
+      {
+        "desc": "Broken streetlight out in SEC-9",
+        "lat": 30.746,
+        "lon": 76.786,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-9 de vich streetlight out kharab hai",
+        "lat": 30.7461,
+        "lon": 76.7859,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-9 par streetlight out ki samasya hai",
+        "lat": 30.7459,
+        "lon": 76.7861,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_10",
+    "canonical_category": "POTHOLE",
+    "sector": "SEC-10",
+    "reports": [
+      {
+        "desc": "Broken pothole in SEC-10",
+        "lat": 30.748,
+        "lon": 76.788,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-10 de vich pothole kharab hai",
+        "lat": 30.7481,
+        "lon": 76.7879,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-10 par pothole ki samasya hai",
+        "lat": 30.7479,
+        "lon": 76.7881,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_11",
+    "canonical_category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-11",
+    "reports": [
+      {
+        "desc": "Broken garbage overflow in SEC-11",
+        "lat": 30.75,
+        "lon": 76.78999999999999,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-11 de vich garbage overflow kharab hai",
+        "lat": 30.7501,
+        "lon": 76.78989999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-11 par garbage overflow ki samasya hai",
+        "lat": 30.7499,
+        "lon": 76.7901,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_12",
+    "canonical_category": "DRAIN_BLOCKED",
+    "sector": "SEC-12",
+    "reports": [
+      {
+        "desc": "Broken drain blocked in SEC-12",
+        "lat": 30.752,
+        "lon": 76.792,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-12 de vich drain blocked kharab hai",
+        "lat": 30.7521,
+        "lon": 76.7919,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-12 par drain blocked ki samasya hai",
+        "lat": 30.7519,
+        "lon": 76.7921,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_13",
+    "canonical_category": "STREETLIGHT_OUT",
+    "sector": "SEC-13",
+    "reports": [
+      {
+        "desc": "Broken streetlight out in SEC-13",
+        "lat": 30.754,
+        "lon": 76.794,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-13 de vich streetlight out kharab hai",
+        "lat": 30.7541,
+        "lon": 76.7939,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-13 par streetlight out ki samasya hai",
+        "lat": 30.7539,
+        "lon": 76.7941,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_14",
+    "canonical_category": "POTHOLE",
+    "sector": "SEC-14",
+    "reports": [
+      {
+        "desc": "Broken pothole in SEC-14",
+        "lat": 30.756,
+        "lon": 76.79599999999999,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-14 de vich pothole kharab hai",
+        "lat": 30.7561,
+        "lon": 76.79589999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-14 par pothole ki samasya hai",
+        "lat": 30.7559,
+        "lon": 76.7961,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_15",
+    "canonical_category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-15",
+    "reports": [
+      {
+        "desc": "Broken garbage overflow in SEC-15",
+        "lat": 30.758,
+        "lon": 76.798,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-15 de vich garbage overflow kharab hai",
+        "lat": 30.7581,
+        "lon": 76.7979,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-15 par garbage overflow ki samasya hai",
+        "lat": 30.7579,
+        "lon": 76.7981,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_16",
+    "canonical_category": "DRAIN_BLOCKED",
+    "sector": "SEC-16",
+    "reports": [
+      {
+        "desc": "Broken drain blocked in SEC-16",
+        "lat": 30.76,
+        "lon": 76.8,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-16 de vich drain blocked kharab hai",
+        "lat": 30.7601,
+        "lon": 76.7999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-16 par drain blocked ki samasya hai",
+        "lat": 30.759900000000002,
+        "lon": 76.8001,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_17",
+    "canonical_category": "STREETLIGHT_OUT",
+    "sector": "SEC-17",
+    "reports": [
+      {
+        "desc": "Broken streetlight out in SEC-17",
+        "lat": 30.762,
+        "lon": 76.80199999999999,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-17 de vich streetlight out kharab hai",
+        "lat": 30.7621,
+        "lon": 76.80189999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-17 par streetlight out ki samasya hai",
+        "lat": 30.7619,
+        "lon": 76.8021,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_18",
+    "canonical_category": "POTHOLE",
+    "sector": "SEC-18",
+    "reports": [
+      {
+        "desc": "Broken pothole in SEC-18",
+        "lat": 30.764,
+        "lon": 76.804,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-18 de vich pothole kharab hai",
+        "lat": 30.7641,
+        "lon": 76.8039,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-18 par pothole ki samasya hai",
+        "lat": 30.7639,
+        "lon": 76.8041,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_19",
+    "canonical_category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-19",
+    "reports": [
+      {
+        "desc": "Broken garbage overflow in SEC-19",
+        "lat": 30.766000000000002,
+        "lon": 76.806,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-19 de vich garbage overflow kharab hai",
+        "lat": 30.7661,
+        "lon": 76.8059,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-19 par garbage overflow ki samasya hai",
+        "lat": 30.765900000000002,
+        "lon": 76.8061,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_20",
+    "canonical_category": "DRAIN_BLOCKED",
+    "sector": "SEC-20",
+    "reports": [
+      {
+        "desc": "Broken drain blocked in SEC-20",
+        "lat": 30.768,
+        "lon": 76.80799999999999,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-20 de vich drain blocked kharab hai",
+        "lat": 30.7681,
+        "lon": 76.80789999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-20 par drain blocked ki samasya hai",
+        "lat": 30.7679,
+        "lon": 76.8081,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_21",
+    "canonical_category": "STREETLIGHT_OUT",
+    "sector": "SEC-1",
+    "reports": [
+      {
+        "desc": "Broken streetlight out in SEC-1",
+        "lat": 30.77,
+        "lon": 76.81,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-1 de vich streetlight out kharab hai",
+        "lat": 30.7701,
+        "lon": 76.8099,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-1 par streetlight out ki samasya hai",
+        "lat": 30.7699,
+        "lon": 76.8101,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_22",
+    "canonical_category": "POTHOLE",
+    "sector": "SEC-2",
+    "reports": [
+      {
+        "desc": "Broken pothole in SEC-2",
+        "lat": 30.772000000000002,
+        "lon": 76.812,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-2 de vich pothole kharab hai",
+        "lat": 30.772100000000002,
+        "lon": 76.8119,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-2 par pothole ki samasya hai",
+        "lat": 30.771900000000002,
+        "lon": 76.8121,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_23",
+    "canonical_category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-3",
+    "reports": [
+      {
+        "desc": "Broken garbage overflow in SEC-3",
+        "lat": 30.774,
+        "lon": 76.814,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-3 de vich garbage overflow kharab hai",
+        "lat": 30.7741,
+        "lon": 76.81389999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-3 par garbage overflow ki samasya hai",
+        "lat": 30.7739,
+        "lon": 76.8141,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_24",
+    "canonical_category": "DRAIN_BLOCKED",
+    "sector": "SEC-4",
+    "reports": [
+      {
+        "desc": "Broken drain blocked in SEC-4",
+        "lat": 30.776,
+        "lon": 76.816,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-4 de vich drain blocked kharab hai",
+        "lat": 30.7761,
+        "lon": 76.8159,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-4 par drain blocked ki samasya hai",
+        "lat": 30.7759,
+        "lon": 76.8161,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_25",
+    "canonical_category": "STREETLIGHT_OUT",
+    "sector": "SEC-5",
+    "reports": [
+      {
+        "desc": "Broken streetlight out in SEC-5",
+        "lat": 30.778,
+        "lon": 76.818,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-5 de vich streetlight out kharab hai",
+        "lat": 30.7781,
+        "lon": 76.8179,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-5 par streetlight out ki samasya hai",
+        "lat": 30.7779,
+        "lon": 76.8181,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_26",
+    "canonical_category": "POTHOLE",
+    "sector": "SEC-6",
+    "reports": [
+      {
+        "desc": "Broken pothole in SEC-6",
+        "lat": 30.78,
+        "lon": 76.82,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-6 de vich pothole kharab hai",
+        "lat": 30.7801,
+        "lon": 76.81989999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-6 par pothole ki samasya hai",
+        "lat": 30.7799,
+        "lon": 76.8201,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_27",
+    "canonical_category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-7",
+    "reports": [
+      {
+        "desc": "Broken garbage overflow in SEC-7",
+        "lat": 30.782,
+        "lon": 76.822,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-7 de vich garbage overflow kharab hai",
+        "lat": 30.7821,
+        "lon": 76.8219,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-7 par garbage overflow ki samasya hai",
+        "lat": 30.7819,
+        "lon": 76.8221,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_28",
+    "canonical_category": "DRAIN_BLOCKED",
+    "sector": "SEC-8",
+    "reports": [
+      {
+        "desc": "Broken drain blocked in SEC-8",
+        "lat": 30.784,
+        "lon": 76.824,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-8 de vich drain blocked kharab hai",
+        "lat": 30.7841,
+        "lon": 76.8239,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-8 par drain blocked ki samasya hai",
+        "lat": 30.7839,
+        "lon": 76.8241,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_29",
+    "canonical_category": "STREETLIGHT_OUT",
+    "sector": "SEC-9",
+    "reports": [
+      {
+        "desc": "Broken streetlight out in SEC-9",
+        "lat": 30.786,
+        "lon": 76.826,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-9 de vich streetlight out kharab hai",
+        "lat": 30.7861,
+        "lon": 76.82589999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-9 par streetlight out ki samasya hai",
+        "lat": 30.7859,
+        "lon": 76.8261,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_30",
+    "canonical_category": "POTHOLE",
+    "sector": "SEC-10",
+    "reports": [
+      {
+        "desc": "Broken pothole in SEC-10",
+        "lat": 30.788,
+        "lon": 76.828,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-10 de vich pothole kharab hai",
+        "lat": 30.7881,
+        "lon": 76.8279,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-10 par pothole ki samasya hai",
+        "lat": 30.7879,
+        "lon": 76.8281,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_31",
+    "canonical_category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-11",
+    "reports": [
+      {
+        "desc": "Broken garbage overflow in SEC-11",
+        "lat": 30.79,
+        "lon": 76.83,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-11 de vich garbage overflow kharab hai",
+        "lat": 30.7901,
+        "lon": 76.8299,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-11 par garbage overflow ki samasya hai",
+        "lat": 30.7899,
+        "lon": 76.8301,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_32",
+    "canonical_category": "DRAIN_BLOCKED",
+    "sector": "SEC-12",
+    "reports": [
+      {
+        "desc": "Broken drain blocked in SEC-12",
+        "lat": 30.792,
+        "lon": 76.832,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-12 de vich drain blocked kharab hai",
+        "lat": 30.7921,
+        "lon": 76.83189999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-12 par drain blocked ki samasya hai",
+        "lat": 30.791900000000002,
+        "lon": 76.8321,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_33",
+    "canonical_category": "STREETLIGHT_OUT",
+    "sector": "SEC-13",
+    "reports": [
+      {
+        "desc": "Broken streetlight out in SEC-13",
+        "lat": 30.794,
+        "lon": 76.83399999999999,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-13 de vich streetlight out kharab hai",
+        "lat": 30.7941,
+        "lon": 76.83389999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-13 par streetlight out ki samasya hai",
+        "lat": 30.7939,
+        "lon": 76.83409999999999,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_34",
+    "canonical_category": "POTHOLE",
+    "sector": "SEC-14",
+    "reports": [
+      {
+        "desc": "Broken pothole in SEC-14",
+        "lat": 30.796,
+        "lon": 76.836,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-14 de vich pothole kharab hai",
+        "lat": 30.7961,
+        "lon": 76.8359,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-14 par pothole ki samasya hai",
+        "lat": 30.7959,
+        "lon": 76.8361,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_35",
+    "canonical_category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-15",
+    "reports": [
+      {
+        "desc": "Broken garbage overflow in SEC-15",
+        "lat": 30.798000000000002,
+        "lon": 76.838,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-15 de vich garbage overflow kharab hai",
+        "lat": 30.7981,
+        "lon": 76.83789999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-15 par garbage overflow ki samasya hai",
+        "lat": 30.797900000000002,
+        "lon": 76.8381,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_36",
+    "canonical_category": "DRAIN_BLOCKED",
+    "sector": "SEC-16",
+    "reports": [
+      {
+        "desc": "Broken drain blocked in SEC-16",
+        "lat": 30.8,
+        "lon": 76.83999999999999,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-16 de vich drain blocked kharab hai",
+        "lat": 30.8001,
+        "lon": 76.83989999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-16 par drain blocked ki samasya hai",
+        "lat": 30.7999,
+        "lon": 76.84009999999999,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_37",
+    "canonical_category": "STREETLIGHT_OUT",
+    "sector": "SEC-17",
+    "reports": [
+      {
+        "desc": "Broken streetlight out in SEC-17",
+        "lat": 30.802,
+        "lon": 76.842,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-17 de vich streetlight out kharab hai",
+        "lat": 30.8021,
+        "lon": 76.8419,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-17 par streetlight out ki samasya hai",
+        "lat": 30.8019,
+        "lon": 76.8421,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_38",
+    "canonical_category": "POTHOLE",
+    "sector": "SEC-18",
+    "reports": [
+      {
+        "desc": "Broken pothole in SEC-18",
+        "lat": 30.804000000000002,
+        "lon": 76.844,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-18 de vich pothole kharab hai",
+        "lat": 30.804100000000002,
+        "lon": 76.84389999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-18 par pothole ki samasya hai",
+        "lat": 30.803900000000002,
+        "lon": 76.8441,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_39",
+    "canonical_category": "GARBAGE_OVERFLOW",
+    "sector": "SEC-19",
+    "reports": [
+      {
+        "desc": "Broken garbage overflow in SEC-19",
+        "lat": 30.806,
+        "lon": 76.84599999999999,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-19 de vich garbage overflow kharab hai",
+        "lat": 30.8061,
+        "lon": 76.84589999999999,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-19 par garbage overflow ki samasya hai",
+        "lat": 30.8059,
+        "lon": 76.84609999999999,
+        "lang": "hi-Latn"
+      }
+    ]
+  },
+  {
+    "cluster_id": "clust_40",
+    "canonical_category": "DRAIN_BLOCKED",
+    "sector": "SEC-20",
+    "reports": [
+      {
+        "desc": "Broken drain blocked in SEC-20",
+        "lat": 30.808,
+        "lon": 76.848,
+        "lang": "en"
+      },
+      {
+        "desc": "SEC-20 de vich drain blocked kharab hai",
+        "lat": 30.8081,
+        "lon": 76.8479,
+        "lang": "pa-Latn"
+      },
+      {
+        "desc": "SEC-20 par drain blocked ki samasya hai",
+        "lat": 30.8079,
+        "lon": 76.8481,
+        "lang": "hi-Latn"
+      }
+    ]
+  }
+]

@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ਪੱਕਾ ਹੱਲ • Pakka Hal | Verified-Resolution Rails for Chandigarh</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#1d4ed8',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .gradient-header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0369a1 100%);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col font-sans">
+
+  <!-- Header -->
+  <header class="gradient-header text-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8 flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="bg-blue-500/20 p-2.5 rounded-xl border border-blue-400/30">
+          <i class="fa-solid fa-shield-halved text-2xl text-blue-300"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl font-bold tracking-tight">ਪੱਕਾ ਹੱਲ • Pakka Hal</h1>
+            <span class="bg-blue-400/20 text-blue-200 text-xs px-2 py-0.5 rounded-full border border-blue-400/30 font-mono">DPI Chandigarh</span>
+          </div>
+          <p class="text-xs text-slate-300">Verified-Resolution Rails & Accountable Infrastructure</p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex items-center space-x-1 bg-slate-900/60 p-1 rounded-xl border border-slate-700/60 text-xs sm:text-sm">
+        <button onclick="switchTab('citizen')" id="tab-citizen" class="tab-btn px-3 py-1.5 rounded-lg font-medium transition-all bg-blue-600 text-white shadow">
+          <i class="fa-solid fa-bullhorn mr-1.5"></i> Citizen Intake
+        </button>
+        <button onclick="switchTab('worker')" id="tab-worker" class="tab-btn px-3 py-1.5 rounded-lg font-medium transition-all text-slate-300 hover:text-white">
+          <i class="fa-solid fa-camera mr-1.5"></i> Field Proof
+        </button>
+        <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn px-3 py-1.5 rounded-lg font-medium transition-all text-slate-300 hover:text-white">
+          <i class="fa-solid fa-chart-pie mr-1.5"></i> Dashboard
+        </button>
+        <button onclick="switchTab('ledger')" id="tab-ledger" class="tab-btn px-3 py-1.5 rounded-lg font-medium transition-all text-slate-300 hover:text-white">
+          <i class="fa-solid fa-link mr-1.5"></i> SHA-256 Ledger
+        </button>
+        <button onclick="switchTab('api')" id="tab-api" class="tab-btn px-3 py-1.5 rounded-lg font-medium transition-all text-slate-300 hover:text-white">
+          <i class="fa-solid fa-code mr-1.5"></i> Open311 API
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Emergency 112 Banner (Hidden by default, triggered on emergency) -->
+  <div id="emergency-banner" class="hidden bg-red-600 text-white px-4 py-3 shadow-md animate-pulse">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <i class="fa-solid fa-triangle-exclamation text-2xl"></i>
+        <div>
+          <h2 class="font-bold text-sm sm:text-base">CRITICAL EMERGENCY DETECTED • ਤੁਰੰਤ ਐਮਰਜੈਂਸੀ • आपातकालीन सूचना</h2>
+          <p class="text-xs text-red-100" id="emergency-text">Potential threat to life detected. Please dial 112 immediately. This incident is NOT queued as a civic ticket.</p>
+        </div>
+      </div>
+      <a href="tel:112" class="bg-white text-red-700 font-bold px-4 py-1.5 rounded-lg text-sm shadow hover:bg-red-50 flex items-center gap-1.5">
+        <i class="fa-solid fa-phone"></i> Call 112
+      </a>
+    </div>
+  </div>
+
+  <!-- Main Content Container -->
+  <main class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex-1 w-full">
+
+    <!-- TAB 1: CITIZEN INTAKE -->
+    <section id="content-citizen" class="tab-content block">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Left: Intake Form -->
+        <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
+          <div>
+            <div class="flex justify-between items-center">
+              <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                <i class="fa-solid fa-microphone-lines text-blue-600"></i> Multilingual Voice & Photo Report
+              </h2>
+              <span class="text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-0.5 rounded-full font-medium">
+                <i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i> Live Input
+              </span>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Speak or write in Punjabi (Gurmukhi / Latin), Hindi, or English. Audio is converted to structured Open311 incidents.</p>
+          </div>
+
+          <!-- Fast Sample Prompts for Instant Demo -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-semibold text-slate-600 uppercase tracking-wider">Quick Preset Samples</label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <button onclick="setSample('pa')" class="text-left p-2.5 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/50 transition text-xs">
+                <div class="font-bold text-slate-700 flex items-center gap-1">
+                  <span>🇮🇳 Punjabi (Gurmukhi)</span>
+                </div>
+                <div class="text-slate-500 truncate mt-0.5">ਸੈਕਟਰ 22 ਵਿੱਚ ਬੱਤੀ ਖਰਾਬ ਹੈ</div>
+              </button>
+              <button onclick="setSample('hi')" class="text-left p-2.5 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/50 transition text-xs">
+                <div class="font-bold text-slate-700 flex items-center gap-1">
+                  <span>🇮🇳 Hindi</span>
+                </div>
+                <div class="text-slate-500 truncate mt-0.5">सड़क पर बहुत गहरा गड्ढा है</div>
+              </button>
+              <button onclick="setSample('em')" class="text-left p-2.5 rounded-xl border border-red-200 hover:border-red-400 hover:bg-red-50/50 transition text-xs">
+                <div class="font-bold text-red-600 flex items-center gap-1">
+                  <span>⚠️ Emergency Test</span>
+                </div>
+                <div class="text-red-500 truncate mt-0.5">मार्केट में आग लग गई है</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Description Input -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Incident Description / Voice Transcript</label>
+            <textarea id="citizen-desc" rows="3" class="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Describe the issue in Punjabi, Hindi, Hinglish, or English..."></textarea>
+          </div>
+
+          <!-- Sector & Media Controls -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Chandigarh Sector</label>
+              <select id="citizen-sector" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 bg-white">
+                <option value="SEC-17">Sector 17 (City Centre)</option>
+                <option value="SEC-22" selected>Sector 22 (Aroma / Market)</option>
+                <option value="SEC-35">Sector 35 (Commercial Hub)</option>
+                <option value="SEC-43">Sector 43 (ISBT Bus Stand)</option>
+                <option value="IT-PARK">Rajiv Gandhi IT Park</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Defect Category (Auto-Detected)</label>
+              <select id="citizen-service-code" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 bg-white">
+                <option value="STREETLIGHT_OUT">Streetlight Outage</option>
+                <option value="POTHOLE">Pothole / Road Damage</option>
+                <option value="GARBAGE_OVERFLOW">Garbage Overflow</option>
+                <option value="DRAIN_BLOCKED">Blocked Drain</option>
+                <option value="MANHOLE_COVER">Open Manhole</option>
+                <option value="SIGNAL_FAULT">Signal Fault</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button onclick="submitCitizenReport()" id="btn-submit-report" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl text-sm shadow-md transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-paper-plane"></i> Submit to Open311 Layer
+          </button>
+        </div>
+
+        <!-- Right: Realtime Triage & Deduplication Card -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <h3 class="text-sm font-bold text-slate-800 flex items-center justify-between">
+              <span><i class="fa-solid fa-bolt text-amber-500 mr-1.5"></i> Triage & Deduplication Result</span>
+              <span id="triage-status-badge" class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-mono">Waiting for input</span>
+            </h3>
+
+            <div id="triage-output" class="text-xs text-slate-600 space-y-2 bg-slate-50 p-3.5 rounded-xl border border-slate-100 min-h-[140px]">
+              <p class="text-slate-400 italic">Submit a report or click a preset sample to view AI structured output, language detection, and deduplication clustering in real time.</p>
+            </div>
+          </div>
+
+          <!-- Recent Canonical Incidents List -->
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <div class="flex justify-between items-center">
+              <h3 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
+                <i class="fa-solid fa-layer-group text-blue-600"></i> Active Incidents
+              </h3>
+              <button onclick="loadIncidents()" class="text-xs text-blue-600 hover:underline">
+                <i class="fa-solid fa-rotate-right mr-1"></i> Refresh
+              </button>
+            </div>
+            <div id="incidents-list" class="space-y-2 max-h-[260px] overflow-y-auto text-xs">
+              <div class="p-3 text-slate-400 text-center">Loading incidents...</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 2: FIELD WORKER PROOF OF WORK -->
+    <section id="content-worker" class="tab-content hidden">
+      <div class="max-w-3xl mx-auto bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
+        <div>
+          <div class="flex justify-between items-center">
+            <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+              <i class="fa-solid fa-camera-retro text-emerald-600"></i> Field Worker Evidence Capture
+            </h2>
+            <span class="text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-0.5 rounded-full font-medium">
+              Geofenced In-App Capture
+            </span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Requires live GPS location within 100m. Compares before/after photos, detects photo recycling (pHash), and calculates verification posterior.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Target Canonical Incident</label>
+            <select id="worker-incident-id" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 bg-white">
+              <option value="">Select an open incident...</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Worker ID / Badge Number</label>
+            <input type="text" id="worker-id" value="ENG_ELEC_CHD_042" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Simulated Worker GPS</label>
+            <div class="flex gap-2">
+              <input type="number" step="0.0001" id="worker-lat" value="30.7333" class="w-1/2 px-2.5 py-1.5 text-xs border rounded-lg">
+              <input type="number" step="0.0001" id="worker-lon" value="76.7725" class="w-1/2 px-2.5 py-1.5 text-xs border rounded-lg">
+            </div>
+            <p class="text-[11px] text-slate-400 mt-1">Default coordinates match Sector 22 Aroma.</p>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Repair Completion Notes</label>
+            <input type="text" id="worker-notes" value="Replaced faulty sodium bulb and secured wiring fixture." class="w-full px-3 py-1.5 text-xs border rounded-lg">
+          </div>
+        </div>
+
+        <!-- Testing Scenarios: Honest vs Fraudulent -->
+        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 space-y-2">
+          <label class="text-xs font-semibold text-slate-700 uppercase tracking-wider">Test Evidence Scenarios</label>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="setWorkerScenario('good')" class="px-3 py-1.5 bg-emerald-50 text-emerald-700 border border-emerald-300 hover:bg-emerald-100 rounded-lg text-xs font-medium">
+              <i class="fa-solid fa-check-circle mr-1"></i> Honest Resolution (Valid Photo + On Site)
+            </button>
+            <button onclick="setWorkerScenario('adversarial')" class="px-3 py-1.5 bg-amber-50 text-amber-700 border border-amber-300 hover:bg-amber-100 rounded-lg text-xs font-medium">
+              <i class="fa-solid fa-triangle-exclamation mr-1"></i> Defect Unresolved (Unfixed Photo)
+            </button>
+            <button onclick="setWorkerScenario('far')" class="px-3 py-1.5 bg-rose-50 text-rose-700 border border-rose-300 hover:bg-rose-100 rounded-lg text-xs font-medium">
+              <i class="fa-solid fa-location-pin-lock mr-1"></i> Distance Anomaly (Worker 2km Away)
+            </button>
+          </div>
+        </div>
+
+        <button onclick="submitWorkerClosure()" id="btn-submit-closure" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-sm shadow-md transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-stamp"></i> Execute Verification Protocol & Commit Proof
+        </button>
+
+        <!-- Verification Results Card -->
+        <div id="worker-result-card" class="hidden bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+          <!-- Filled dynamically -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 3: MUNICIPAL DASHBOARD & EQUITY -->
+    <section id="content-dashboard" class="tab-content hidden space-y-6">
+      <!-- High-level KPIs -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="text-xs text-slate-500 uppercase font-semibold">Total Reported</div>
+          <div id="kpi-total" class="text-2xl font-black text-slate-800 mt-1">0</div>
+          <div class="text-[11px] text-slate-400 mt-1">Canonical incidents</div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="text-xs text-emerald-600 uppercase font-semibold">Verified Fixed</div>
+          <div id="kpi-verified" class="text-2xl font-black text-emerald-600 mt-1">0</div>
+          <div class="text-[11px] text-emerald-500 mt-1">Evidence confirmed</div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="text-xs text-amber-600 uppercase font-semibold">Under Dispute</div>
+          <div id="kpi-disputed" class="text-2xl font-black text-amber-600 mt-1">0</div>
+          <div class="text-[11px] text-amber-500 mt-1">Citizen flagged</div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="text-xs text-blue-600 uppercase font-semibold">City Resolution Rate</div>
+          <div id="kpi-rate" class="text-2xl font-black text-blue-600 mt-1">0%</div>
+          <div id="kpi-rate-ci" class="text-[11px] text-slate-400 mt-1">95% Wilson CI: [0% - 0%]</div>
+        </div>
+      </div>
+
+      <!-- Sector Metrics Table with Wilson Confidence Intervals -->
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-base font-bold text-slate-800">Verified Resolution Rate by Sector</h3>
+            <p class="text-xs text-slate-500">Includes 95% Wilson Score Confidence Intervals. Flags small-n sectors (n &lt; 5).</p>
+          </div>
+          <button onclick="loadDashboardMetrics()" class="text-xs text-blue-600 hover:underline">
+            <i class="fa-solid fa-rotate-right mr-1"></i> Refresh
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider border-b">
+              <tr>
+                <th class="p-2.5">Sector</th>
+                <th class="p-2.5">Total Incidents</th>
+                <th class="p-2.5">Verified Fixed</th>
+                <th class="p-2.5">Resolution Rate</th>
+                <th class="p-2.5">Wilson 95% CI Interval</th>
+                <th class="p-2.5">Status Flag</th>
+              </tr>
+            </thead>
+            <tbody id="metrics-table-body" class="divide-y divide-slate-100">
+              <tr><td colspan="6" class="p-4 text-center text-slate-400">Loading sector metrics...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Equity Module: Silent Area Bandit Simulator -->
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <div class="flex justify-between items-center">
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-base font-bold text-slate-800">Equity Module: Silent Area Detection</h3>
+              <span class="text-xs bg-purple-100 text-purple-700 font-mono px-2 py-0.5 rounded-full border border-purple-200">simulated</span>
+            </div>
+            <p class="text-xs text-slate-500">Corrects for reporting bias (the unobserved denominator). Uses Thompson Sampling over 60 Chandigarh sectors to allocate proactive audits.</p>
+          </div>
+          <button onclick="loadEquityData()" class="text-xs text-purple-600 hover:underline">
+            <i class="fa-solid fa-brain mr-1"></i> Run Bandit Simulation
+          </button>
+        </div>
+
+        <div id="equity-container" class="space-y-3">
+          <div class="p-4 text-center text-slate-400 text-xs">Click 'Run Bandit Simulation' to execute Thompson Sampling over Chandigarh sectors.</div>
+        </div>
+      </div>
+
+      <!-- Abstained Human Triage Queue -->
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-base font-bold text-slate-800">Abstained Human Review Desk</h3>
+            <p class="text-xs text-slate-500">Incidents where the ownership router abstained (&lt; 0.70 confidence) to avoid misdirecting municipal crews.</p>
+          </div>
+          <button onclick="loadHumanQueue()" class="text-xs text-blue-600 hover:underline">
+            <i class="fa-solid fa-rotate-right mr-1"></i> Refresh
+          </button>
+        </div>
+        <div id="human-queue-list" class="space-y-2 text-xs">
+          <div class="p-3 text-slate-400 text-center">Checking human triage queue...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: CRYPTOGRAPHIC LEDGER -->
+    <section id="content-ledger" class="tab-content hidden space-y-6">
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <div class="flex justify-between items-center">
+          <div>
+            <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+              <i class="fa-solid fa-link text-indigo-600"></i> SHA-256 Linear Cryptographic Ledger
+            </h2>
+            <p class="text-xs text-slate-500">Tamper-evident audit chain. Every intake, dedup merge, routing, closure attempt, and citizen confirmation forms an immutable SHA-256 block.</p>
+          </div>
+          <button onclick="verifyChain()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold shadow transition">
+            <i class="fa-solid fa-shield-virus mr-1"></i> Run Cryptographic Verification
+          </button>
+        </div>
+
+        <div id="ledger-chain-status" class="p-3.5 bg-slate-50 rounded-xl border text-xs flex justify-between items-center">
+          <span class="text-slate-600">Chain Status: <strong class="text-slate-800">Initialized</strong></span>
+          <span id="chain-badge" class="bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-mono">Unchecked</span>
+        </div>
+
+        <!-- Ledger Entries Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono">
+            <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider border-b">
+              <tr>
+                <th class="p-2.5">Seq</th>
+                <th class="p-2.5">Timestamp</th>
+                <th class="p-2.5">Event Type</th>
+                <th class="p-2.5">Incident ID</th>
+                <th class="p-2.5">Payload SHA-256</th>
+                <th class="p-2.5">Entry Hash (Block Tip)</th>
+              </tr>
+            </thead>
+            <tbody id="ledger-table-body" class="divide-y divide-slate-100 text-slate-700">
+              <tr><td colspan="6" class="p-4 text-center text-slate-400 font-sans">Click 'Run Cryptographic Verification' to inspect the chain.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: OPEN311 API DOCS -->
+    <section id="content-api" class="tab-content hidden space-y-6">
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <div>
+          <h2 class="text-lg font-bold text-slate-800">Open311 GeoReport v2 Compliance</h2>
+          <p class="text-xs text-slate-500">Standardized REST endpoints compatible with any Open311 client, enhanced with Pakka Hal DPI extension attributes.</p>
+        </div>
+
+        <div class="space-y-3 text-xs">
+          <div class="p-3.5 bg-slate-900 text-slate-100 rounded-xl font-mono space-y-1">
+            <div class="text-slate-400">// 1. Discover Civic Services</div>
+            <div class="text-emerald-400">curl -X GET http://localhost:8000/services.json</div>
+          </div>
+          <div class="p-3.5 bg-slate-900 text-slate-100 rounded-xl font-mono space-y-1">
+            <div class="text-slate-400">// 2. Submit a Service Request (Open311 GeoReport v2)</div>
+            <div class="text-emerald-400">curl -X POST http://localhost:8000/requests.json \</div>
+            <div class="pl-4">-H "Content-Type: application/json" \</div>
+            <div class="pl-4">-d '{"service_code":"STREETLIGHT_OUT","lat":30.7333,"long":76.7725,"description":"Streetlight broken Sector 22 Aroma market"}'</div>
+          </div>
+          <div class="p-3.5 bg-slate-900 text-slate-100 rounded-xl font-mono space-y-1">
+            <div class="text-slate-400">// 3. Query Status & Verified Resolution State</div>
+            <div class="text-emerald-400">curl -X GET http://localhost:8000/requests/req_XXXXX.json</div>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <a href="/docs" target="_blank" class="inline-flex items-center text-xs text-blue-600 hover:underline font-semibold gap-1">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Interactive OpenAPI / Swagger Docs (/docs)
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-4 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-between items-center gap-2">
+      <div>
+        <strong>Pakka Hal</strong> • Code for Communities Chandigarh • GDG Cloud Chandigarh 2026
+      </div>
+      <div class="flex items-center space-x-4">
+        <span>License: <strong>Apache-2.0</strong></span>
+        <span>Open311 GeoReport v2</span>
+        <span class="text-emerald-600 font-semibold"><i class="fa-solid fa-circle text-[8px] mr-1"></i> System Operational</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script>
+    const API_BASE = "";
+
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-blue-600', 'text-white', 'shadow');
+        btn.classList.add('text-slate-300');
+      });
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+
+      document.getElementById('tab-' + tabName).classList.add('bg-blue-600', 'text-white', 'shadow');
+      document.getElementById('tab-' + tabName).classList.remove('text-slate-300');
+      document.getElementById('content-' + tabName).classList.remove('hidden');
+
+      if (tabName === 'dashboard') {
+        loadDashboardMetrics();
+      } else if (tabName === 'ledger') {
+        verifyChain();
+      } else if (tabName === 'worker') {
+        populateWorkerIncidents();
+      }
+    }
+
+    function setSample(type) {
+      const desc = document.getElementById('citizen-desc');
+      const sector = document.getElementById('citizen-sector');
+      const code = document.getElementById('citizen-service-code');
+      const banner = document.getElementById('emergency-banner');
+
+      if (type === 'pa') {
+        desc.value = "ਸੈਕਟਰ 22 ਮਾਰਕੀਟ ਦੇ ਪਿੱਛੇ ਸਟ੍ਰੀਟ ਲਾਈਟ ਦਾ ਖੰਭਾ ਟੁੱਟਿਆ ਪਿਆ ਹੈ, ਹਨੇਰਾ ਹੈ ਤੇ ਖਤਰਾ ਹੈ।";
+        sector.value = "SEC-22";
+        code.value = "STREETLIGHT_OUT";
+        banner.classList.add('hidden');
+      } else if (type === 'hi') {
+        desc.value = "सेक्टर 35 के मुख्य चौराहे पर सड़क में बड़ा गड्ढा हो गया है, गाड़ियां टकरा रही हैं।";
+        sector.value = "SEC-35";
+        code.value = "POTHOLE";
+        banner.classList.add('hidden');
+      } else if (type === 'em') {
+        desc.value = "सेक्टर 22 की दुकान में भीषण आग लग गई है, तुरंत एम्बुलेंस और फायर ब्रिगेड भेजो! Accident/Fire emergency!";
+        sector.value = "SEC-22";
+        code.value = "STREETLIGHT_OUT";
+        banner.classList.remove('hidden');
+      }
+    }
+
+    async function submitCitizenReport() {
+      const desc = document.getElementById('citizen-desc').value.trim();
+      const sector = document.getElementById('citizen-sector').value;
+      const code = document.getElementById('citizen-service-code').value;
+      const btn = document.getElementById('btn-submit-report');
+      const output = document.getElementById('triage-output');
+      const badge = document.getElementById('triage-status-badge');
+      const banner = document.getElementById('emergency-banner');
+
+      if (!desc) {
+        alert("Please enter a description or click a preset sample.");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1"></i> Triaging & Deduplicating...`;
+
+      try {
+        const res = await fetch(`${API_BASE}/requests.json`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            service_code: code,
+            description: desc,
+            sector: sector,
+            lat: sector === 'SEC-22' ? 30.7333 : (sector === 'SEC-35' ? 30.7225 : 30.7414),
+            long: sector === 'SEC-22' ? 76.7725 : (sector === 'SEC-35' ? 76.7621 : 76.7845)
+          })
+        });
+
+        const data = await res.json();
+        const first = data[0];
+
+        if (first.account_id === 'EMERGENCY_112') {
+          banner.classList.remove('hidden');
+          badge.className = "text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-mono";
+          badge.innerText = "EMERGENCY REDIRECT";
+          output.innerHTML = `
+            <div class="text-red-600 font-bold flex items-center gap-1.5">
+              <i class="fa-solid fa-triangle-exclamation"></i> Emergency Filter Triggered
+            </div>
+            <p class="text-red-700 mt-1">${first.service_notice}</p>
+          `;
+        } else {
+          banner.classList.add('hidden');
+          badge.className = "text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-mono";
+          badge.innerText = "PROCESSED";
+          output.innerHTML = `
+            <div class="space-y-1.5">
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-slate-800">Canonical Ticket: ${first.account_id}</span>
+                <span class="text-[11px] bg-blue-100 text-blue-700 px-2 py-0.2 rounded font-mono">${first.service_request_id}</span>
+              </div>
+              <div class="text-slate-600 font-medium">${first.service_notice}</div>
+              <div class="text-[11px] text-slate-500 pt-1 border-t">SHA-256 Ledger Entry Appended Successfully.</div>
+            </div>
+          `;
+        }
+
+        loadIncidents();
+      } catch (err) {
+        output.innerHTML = `<span class="text-red-600">Error processing report: ${err.message}</span>`;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Submit to Open311 Layer`;
+      }
+    }
+
+    async function loadIncidents() {
+      const container = document.getElementById('incidents-list');
+      try {
+        const res = await fetch(`${API_BASE}/api/v1/incidents?limit=10`);
+        const incidents = await res.json();
+
+        if (incidents.length === 0) {
+          container.innerHTML = `<div class="p-3 text-slate-400 text-center">No active incidents yet.</div>`;
+          return;
+        }
+
+        container.innerHTML = incidents.map(inc => {
+          let badgeColor = "bg-slate-100 text-slate-700";
+          if (inc.resolution_state === "fixed_verified") badgeColor = "bg-emerald-100 text-emerald-800 font-bold";
+          else if (inc.resolution_state === "disputed") badgeColor = "bg-rose-100 text-rose-800 font-bold";
+          else if (inc.resolution_state === "fixed_unverified") badgeColor = "bg-amber-100 text-amber-800";
+
+          return `
+            <div class="p-3 bg-slate-50 hover:bg-slate-100/80 rounded-xl border border-slate-200 transition space-y-1.5">
+              <div class="flex justify-between items-start">
+                <div class="font-bold text-slate-800 truncate pr-2">${inc.title}</div>
+                <span class="text-[10px] px-2 py-0.5 rounded-full ${badgeColor} uppercase tracking-wider">${inc.resolution_state.replace('_', ' ')}</span>
+              </div>
+              <p class="text-slate-600 text-[11px] line-clamp-2">${inc.description}</p>
+              <div class="flex flex-wrap justify-between items-center text-[10px] text-slate-400 pt-1 border-t border-slate-200/60">
+                <span><i class="fa-solid fa-building mr-1"></i>${inc.assigned_department || 'Unassigned'}</span>
+                <span><i class="fa-solid fa-users mr-1"></i>${inc.reports_count} reports</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        container.innerHTML = `<div class="p-2 text-red-500">Failed to load incidents: ${err.message}</div>`;
+      }
+    }
+
+    async function populateWorkerIncidents() {
+      const select = document.getElementById('worker-incident-id');
+      try {
+        const res = await fetch(`${API_BASE}/api/v1/incidents?limit=20`);
+        const incidents = await res.json();
+        select.innerHTML = '<option value="">Select an open incident...</option>' + incidents.map(inc => {
+          return `<option value="${inc.incident_id}">${inc.incident_id} - ${inc.title} (${inc.sector})</option>`;
+        }).join('');
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function setWorkerScenario(type) {
+      const notes = document.getElementById('worker-notes');
+      const lat = document.getElementById('worker-lat');
+      const lon = document.getElementById('worker-lon');
+
+      if (type === 'good') {
+        notes.value = "Repair completed on site. Bulb replaced and wire secured.";
+        lat.value = "30.7333";
+        lon.value = "76.7725";
+      } else if (type === 'adversarial') {
+        notes.value = "adversarial: defect still present, test negative verification.";
+        lat.value = "30.7333";
+        lon.value = "76.7725";
+      } else if (type === 'far') {
+        notes.value = "Worker far from location test.";
+        lat.value = "30.7800"; // 5km away
+        lon.value = "76.8200";
+      }
+    }
+
+    async function submitWorkerClosure() {
+      const incId = document.getElementById('worker-incident-id').value;
+      const workerId = document.getElementById('worker-id').value;
+      const lat = parseFloat(document.getElementById('worker-lat').value);
+      const lon = parseFloat(document.getElementById('worker-lon').value);
+      const notes = document.getElementById('worker-notes').value;
+      const card = document.getElementById('worker-result-card');
+      const btn = document.getElementById('btn-submit-closure');
+
+      if (!incId) {
+        alert("Please select an incident to close.");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1"></i> Evaluating Evidence & Geofence...`;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/v1/closure/submit`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            incident_id: incId,
+            worker_id: workerId,
+            worker_lat: lat,
+            worker_lon: lon,
+            after_media_base64: "data:image/jpeg;base64,sample_proof_of_work",
+            notes: notes
+          })
+        });
+
+        const data = await res.json();
+        card.classList.remove('hidden');
+
+        let stateColor = data.verified_state === 'fixed_verified' ? 'text-emerald-700 bg-emerald-100' : 'text-amber-800 bg-amber-100';
+
+        card.innerHTML = `
+          <div class="flex justify-between items-center border-b pb-2">
+            <h4 class="font-bold text-sm text-slate-800 flex items-center gap-1.5">
+              <i class="fa-solid fa-calculator text-blue-600"></i> Verification Posterior Result
+            </h4>
+            <span class="text-xs px-2.5 py-0.5 rounded-full font-bold uppercase ${stateColor}">${data.verified_state.replace('_', ' ')}</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+            <div class="bg-white p-2 rounded-lg border">
+              <div class="text-slate-400">Posterior Score</div>
+              <div class="font-black text-sm text-blue-700">${(data.final_posterior_score * 100).toFixed(1)}%</div>
+            </div>
+            <div class="bg-white p-2 rounded-lg border">
+              <div class="text-slate-400">Geofence Pass</div>
+              <div class="font-black text-sm ${data.geofence_passed ? 'text-emerald-600' : 'text-red-600'}">${data.geofence_passed ? 'PASSED' : 'FAILED'}</div>
+            </div>
+            <div class="bg-white p-2 rounded-lg border">
+              <div class="text-slate-400">Resolved Prob</div>
+              <div class="font-black text-sm text-slate-800">${(data.problem_resolved_prob * 100).toFixed(0)}%</div>
+            </div>
+            <div class="bg-white p-2 rounded-lg border">
+              <div class="text-slate-400">pHash Duplicate</div>
+              <div class="font-black text-sm ${data.phash_duplicate_detected ? 'text-red-600' : 'text-emerald-600'}">${data.phash_duplicate_detected ? 'FLAGGED' : 'CLEAN'}</div>
+            </div>
+          </div>
+
+          <!-- Reasons & Anomalies -->
+          <div class="text-xs space-y-1">
+            <div class="font-semibold text-slate-700">Verification Trail:</div>
+            <ul class="list-disc list-inside text-slate-600 space-y-0.5">
+              ${data.reasons.map(r => `<li>${r}</li>`).join('')}
+            </ul>
+          </div>
+
+          <!-- 1-Tap Citizen Re-Confirmation Action -->
+          <div class="pt-2 border-t mt-2 flex items-center justify-between">
+            <span class="text-xs font-semibold text-slate-700">Simulate Citizen 1-Tap Re-confirmation:</span>
+            <div class="space-x-1.5">
+              <button onclick="citizenVote('${data.incident_id}', 'fixed')" class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-xs">Fixed 👍</button>
+              <button onclick="citizenVote('${data.incident_id}', 'not_fixed')" class="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white rounded text-xs">Not Fixed 👎</button>
+            </div>
+          </div>
+        `;
+
+        loadIncidents();
+      } catch (err) {
+        alert("Error executing verification: " + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fa-solid fa-stamp"></i> Execute Verification Protocol & Commit Proof`;
+      }
+    }
+
+    async function citizenVote(incidentId, feedback) {
+      try {
+        const res = await fetch(`${API_BASE}/api/v1/closure/citizen-confirm`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            incident_id: incidentId,
+            citizen_feedback: feedback
+          })
+        });
+        const updated = await res.json();
+        alert(`Citizen feedback recorded (${feedback}). New state: ${updated.verified_state} (Posterior: ${(updated.final_posterior_score*100).toFixed(1)}%)`);
+        loadIncidents();
+        loadDashboardMetrics();
+      } catch (err) {
+        alert("Vote failed: " + err.message);
+      }
+    }
+
+    async function loadDashboardMetrics() {
+      try {
+        const res = await fetch(`${API_BASE}/api/v1/dashboard/metrics`);
+        const data = await res.json();
+
+        document.getElementById('kpi-total').innerText = data.summary.total_incidents;
+        document.getElementById('kpi-verified').innerText = data.summary.verified_fixed;
+        document.getElementById('kpi-disputed').innerText = data.summary.disputed;
+        document.getElementById('kpi-rate').innerText = data.summary.city_verified_rate_pct + "%";
+        document.getElementById('kpi-rate-ci').innerText = `95% Wilson CI: [${data.summary.city_ci_lower_pct}% - ${data.summary.city_ci_upper_pct}%]`;
+
+        const tbody = document.getElementById('metrics-table-body');
+        if (data.sectors.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400">No sector data recorded yet.</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = data.sectors.map(s => {
+          return `
+            <tr class="hover:bg-slate-50 transition">
+              <td class="p-2.5 font-bold text-slate-800">${s.sector}</td>
+              <td class="p-2.5">${s.total_incidents}</td>
+              <td class="p-2.5 text-emerald-600 font-semibold">${s.verified_count}</td>
+              <td class="p-2.5 font-bold text-blue-600">${s.verified_rate_pct}%</td>
+              <td class="p-2.5 font-mono text-slate-600">[${s.wilson_ci_95.lower_pct}% – ${s.wilson_ci_95.upper_pct}%]</td>
+              <td class="p-2.5">
+                ${s.small_n_warning 
+                  ? `<span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded text-[10px] font-semibold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Small-n (n < 5)</span>`
+                  : `<span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-[10px] font-semibold">Calibrated</span>`}
+              </td>
+            </tr>
+          `;
+        }).join('');
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function loadEquityData() {
+      const container = document.getElementById('equity-container');
+      container.innerHTML = `<div class="p-4 text-center text-purple-600"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Running Thompson Sampling across 60 Chandigarh Sectors...</div>`;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/v1/equity/silent-areas`);
+        const data = await res.json();
+
+        container.innerHTML = `
+          <!-- Simulator Benchmark Metrics -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-purple-50 p-3 rounded-xl border border-purple-200">
+            <div>
+              <div class="text-purple-600 font-medium">Naive Correlation with Truth</div>
+              <div class="font-black text-slate-800 text-sm">${data.benchmark_metrics.naive_correlation_with_truth}</div>
+            </div>
+            <div>
+              <div class="text-purple-600 font-medium">Estimator Correlation with Truth</div>
+              <div class="font-black text-emerald-700 text-sm">${data.benchmark_metrics.estimator_correlation_with_truth}</div>
+            </div>
+            <div>
+              <div class="text-purple-600 font-medium">Gain in Truth Recovery</div>
+              <div class="font-black text-purple-700 text-sm">+${data.benchmark_metrics.correlation_gain}</div>
+            </div>
+            <div>
+              <div class="text-purple-600 font-medium">Error Reduction (MAE)</div>
+              <div class="font-black text-slate-800 text-sm">${data.benchmark_metrics.naive_mae} ➔ ${data.benchmark_metrics.estimator_mae}</div>
+            </div>
+          </div>
+
+          <!-- Suggested Proactive Audit Tasks -->
+          <div class="space-y-1.5 pt-2">
+            <h4 class="font-bold text-xs text-slate-700 uppercase">Suggested Field Audit Missions (High True Defect Risk vs Low Reporting Voice):</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+              ${data.suggested_audits.map(a => `
+                <div class="p-2.5 bg-slate-50 border rounded-xl flex items-start gap-2">
+                  <span class="px-2 py-0.5 bg-purple-100 text-purple-800 font-bold rounded text-[10px]">${a.sector}</span>
+                  <div class="text-slate-600">${a.reason}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      } catch (err) {
+        container.innerHTML = `<div class="p-3 text-red-500">Failed to run equity simulator: ${err.message}</div>`;
+      }
+    }
+
+    async function loadHumanQueue() {
+      const container = document.getElementById('human-queue-list');
+      try {
+        const res = await fetch(`${API_BASE}/api/v1/human-queue`);
+        const queue = await res.json();
+
+        if (queue.length === 0) {
+          container.innerHTML = `<div class="p-3 text-slate-400 text-center">No pending items in human triage queue.</div>`;
+          return;
+        }
+
+        container.innerHTML = queue.map(item => `
+          <div class="p-3.5 bg-slate-50 border rounded-xl flex flex-wrap justify-between items-center gap-3">
+            <div>
+              <div class="font-bold text-slate-800">${item.title} (${item.sector})</div>
+              <div class="text-slate-500 text-[11px]">${item.reason}</div>
+            </div>
+            <div class="flex items-center gap-2">
+              <select id="resolve-dept-${item.queue_id}" class="px-2 py-1 bg-white border rounded text-xs">
+                ${item.suggested_departments.map(d => `<option value="${d.department_id}">${d.name}</option>`).join('')}
+              </select>
+              <button onclick="resolveQueueItem('${item.queue_id}')" class="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs font-semibold">
+                Assign & Route
+              </button>
+            </div>
+          </div>
+        `).join('');
+      } catch (err) {
+        container.innerHTML = `<div class="p-2 text-red-500">Failed to load human queue: ${err.message}</div>`;
+      }
+    }
+
+    async function resolveQueueItem(queueId) {
+      const select = document.getElementById('resolve-dept-' + queueId);
+      const deptId = select.value;
+      try {
+        await fetch(`${API_BASE}/api/v1/human-queue/${queueId}/resolve`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            department_id: deptId,
+            resolved_by: "Supervisor_Kaur"
+          })
+        });
+        alert("Incident assigned and routed. Ledger entry recorded.");
+        loadHumanQueue();
+        loadIncidents();
+      } catch (err) {
+        alert("Failed to resolve: " + err.message);
+      }
+    }
+
+    async function verifyChain() {
+      const statusBadge = document.getElementById('chain-badge');
+      const tableBody = document.getElementById('ledger-table-body');
+      statusBadge.innerText = "Verifying...";
+
+      try {
+        const verifyRes = await fetch(`${API_BASE}/api/v1/ledger/verify`);
+        const verifyData = await verifyRes.json();
+
+        if (verifyData.is_valid) {
+          statusBadge.className = "bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full font-mono";
+          statusBadge.innerText = `VALID (${verifyData.total_entries} Blocks)`;
+        } else {
+          statusBadge.className = "bg-rose-100 text-rose-800 font-bold px-2 py-0.5 rounded-full font-mono";
+          statusBadge.innerText = `TAMPER DETECTED at ${verifyData.tampered_entry_id}`;
+        }
+
+        // Fetch recent ledger rows from an incident or dummy sample
+        const incRes = await fetch(`${API_BASE}/api/v1/incidents?limit=1`);
+        const incList = await incRes.json();
+        if (incList.length > 0) {
+          const trailRes = await fetch(`${API_BASE}/api/v1/ledger/trail/${incList[0].incident_id}`);
+          const trail = await trailRes.json();
+          tableBody.innerHTML = trail.map(t => `
+            <tr class="hover:bg-slate-50 transition">
+              <td class="p-2 font-bold text-blue-600">#${t.seq}</td>
+              <td class="p-2 text-slate-500">${new Date(t.timestamp).toLocaleTimeString()}</td>
+              <td class="p-2 uppercase text-slate-800 font-semibold">${t.event_type}</td>
+              <td class="p-2 text-slate-600">${incList[0].incident_id}</td>
+              <td class="p-2 text-slate-400 truncate max-w-[120px]">${t.payload_hash.substring(0, 16)}...</td>
+              <td class="p-2 text-emerald-600 font-semibold truncate max-w-[120px]">${t.entry_hash.substring(0, 16)}...</td>
+            </tr>
+          `).join('');
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      loadIncidents();
+    });
+  </script>
+</body>
+</html>
