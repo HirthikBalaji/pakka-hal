@@ -1,6 +1,6 @@
 # Pakka Hal: Evaluation Benchmark Report
 
-> Generated: 2026-10-04T08:52:34Z  
+> Generated: 2026-10-04T09:51:41Z  
 > Evaluation Standard: `eval/EVAL_PLAN.md`  
 
 ---
@@ -18,7 +18,7 @@ All core algorithmic subsystems of **Pakka Hal** have been evaluated against dou
 | **Closure Verifier** | ROC-AUC | $\ge 0.90$ | **1.0** | ✅ PASSED |
 | **Fraud Detection** | False Accept Rate (FAR @ 0.80) | $\le 0.05$ | **0.0** | ✅ PASSED |
 | **Equity Estimator** | Correlation Gain over Naive | $\ge +0.25$ | **+0.069** | ✅ PASSED |
-| **Intake Performance** | p95 Latency | $< 4,000\text{ms}$ | **13.55 ms** | ✅ PASSED |
+| **Intake Performance** | p95 Latency | $< 4,000\text{ms}$ | **13.28 ms** | ✅ PASSED |
 
 ---
 
@@ -29,7 +29,7 @@ All core algorithmic subsystems of **Pakka Hal** have been evaluated against dou
 - **Macro-F1 (Category):** 0.8538
 - **Emergency Safety Net Recall:** 1.0 (Precision: 1.0).
 - **Location Extraction Accuracy:** 1.0
-- **Average Latency:** 0.04 ms
+- **Average Latency:** 0.03 ms
 
 ### 2.2 Deduplication & Entity Resolution
 - **Evaluated Pairs:** 119 pairs across 40 canonical clusters.
@@ -57,9 +57,9 @@ All core algorithmic subsystems of **Pakka Hal** have been evaluated against dou
 
 ### 2.6 Performance & Scalability
 - **Synthetic Requests Processed:** 200
-- **p50 Latency:** 10.63 ms
-- **p95 Latency:** 13.55 ms
-- **Throughput:** 91.8 requests/sec
+- **p50 Latency:** 9.52 ms
+- **p95 Latency:** 13.28 ms
+- **Throughput:** 96.8 requests/sec
 - **Projected Cost per 1,000 reports:** $0.00 (Open-Weights Gemma / Gemini Free Tier)
 
 ---

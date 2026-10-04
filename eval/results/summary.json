@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-04T08:52:34Z",
+  "timestamp": "2026-10-04T09:51:41Z",
   "provenance": {
     "triage": "human_labelled",
     "dedup": "human_curated",
@@ -16,7 +16,7 @@
       "emergency_precision": 1.0,
       "emergency_misses": 0,
       "location_accuracy": 1.0,
-      "avg_latency_ms": 0.04
+      "avg_latency_ms": 0.03
     },
     "deduplication": {
       "evaluated_pairs": 119,
@@ -72,9 +72,9 @@
     },
     "performance": {
       "requests_benchmarked": 200,
-      "p50_latency_ms": 10.63,
-      "p95_latency_ms": 13.55,
-      "throughput_req_sec": 91.8,
+      "p50_latency_ms": 9.52,
+      "p95_latency_ms": 13.28,
+      "throughput_req_sec": 96.8,
       "cost_per_1000_reports_usd": 0.0
     }
   }
