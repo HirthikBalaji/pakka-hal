@@ -1,9 +1,12 @@
 import uuid
 import json
+import base64
+import io
+from PIL import Image
 from datetime import datetime, timezone
 from typing import List, Optional, Dict, Any
-from fastapi import APIRouter, HTTPException, Query, Body
-from pakka_hal.config import city_config
+from fastapi import APIRouter, HTTPException, Query, Body, Request
+from pakka_hal.config import city_config, BASE_DIR
 from pakka_hal.models.open311 import (
     Open311Service, Open311RequestCreate, Open311RequestResponse, Open311RequestDetail
 )
@@ -51,10 +54,13 @@ def get_service_detail(service_code: str):
             )
     raise HTTPException(status_code=404, detail=f"Service code '{service_code}' not found.")
 
+from urllib.parse import parse_qs
+
 @router.post("/requests.json", response_model=List[Open311RequestResponse])
-async def create_request(payload: Open311RequestCreate):
+async def create_request(request: Request):
     """
     Open311 GeoReport v2 endpoint for reporting civic issues.
+    Supports both JSON and application/x-www-form-urlencoded (standard Open311 GeoReport v2).
     Enhanced by Pakka Hal:
     1. Multilingual Triage (text/voice transcript)
     2. Emergency Safety-Net Detection (redirects if danger to life)
@@ -62,19 +68,56 @@ async def create_request(payload: Open311RequestCreate):
     4. Ownership Routing with Abstention
     5. Hash-Chained Public Ledger Audit Entry
     """
+    ct = request.headers.get("content-type", "")
+    if "application/x-www-form-urlencoded" in ct:
+        raw_body = await request.body()
+        parsed = {k: v[0] for k, v in parse_qs(raw_body.decode("utf-8")).items()}
+        if "latitude" in parsed and "lat" not in parsed:
+            parsed["lat"] = parsed["latitude"]
+        if "longitude" in parsed and "long" not in parsed:
+            parsed["long"] = parsed["longitude"]
+        for num_field in ["lat", "long"]:
+            if num_field in parsed and parsed[num_field]:
+                try:
+                    parsed[num_field] = float(parsed[num_field])
+                except ValueError:
+                    pass
+        payload = Open311RequestCreate(**parsed)
+    else:
+        body = await request.json()
+        payload = Open311RequestCreate(**body)
     raw_desc = payload.description or ""
     req_id = f"req_{uuid.uuid4().hex[:10]}"
     token = f"tok_{uuid.uuid4().hex[:8]}"
     now_iso = datetime.now(timezone.utc).isoformat()
 
-    # 1. Run Triage
+    # 1. Process and persist intake evidence photo (if provided)
+    image_bytes = None
+    stored_media_url = payload.media_url
+    if payload.media_url:
+        try:
+            if payload.media_url.startswith("data:image") or len(payload.media_url) > 100:
+                b64_str = payload.media_url.split(",")[-1]
+                image_bytes = base64.b64decode(b64_str)
+                # Verify valid image
+                img = Image.open(io.BytesIO(image_bytes))
+                media_dir = BASE_DIR / "static" / "media"
+                media_dir.mkdir(parents=True, exist_ok=True)
+                file_name = f"{req_id}_before.jpg"
+                img.convert("RGB").save(media_dir / file_name, "JPEG")
+                stored_media_url = f"/static/media/{file_name}"
+        except Exception:
+            image_bytes = None
+
+    # 2. Run Triage
     triage_res = await triage_service.process_report(
         description=raw_desc,
+        image_bytes=image_bytes,
         audio_transcript=payload.description if payload.language else None,
         sector_hint=payload.sector
     )
 
-    # 2. Emergency check
+    # 3. Emergency check
     if triage_res.emergency:
         return [Open311RequestResponse(
             service_request_id=req_id,
@@ -83,7 +126,7 @@ async def create_request(payload: Open311RequestCreate):
             account_id="EMERGENCY_112"
         )]
 
-    # 3. Deduplication check
+    # 4. Deduplication check
     decision, matched_inc, sim_score = await dedup_service.find_merge_candidate(triage_res)
 
     lat = payload.lat or triage_res.location.lat or 30.7333
@@ -91,7 +134,7 @@ async def create_request(payload: Open311RequestCreate):
     sector = payload.sector or triage_res.location.sector or "SEC-17"
     category = triage_res.category if triage_res.category != "OTHER" else (payload.service_code or "OTHER")
 
-    # 4. Routing
+    # 5. Routing
     routing_decision = ownership_router.route_incident(triage_res)
 
     conn = get_connection()
@@ -139,7 +182,7 @@ async def create_request(payload: Open311RequestCreate):
             canon_id, category, s_name, f"{s_name} at {sector}", raw_desc,
             lat, lon, sector, routing_decision.department_name,
             routing_decision.confidence, int(routing_decision.abstained),
-            payload.media_url, now_iso, now_iso
+            stored_media_url, now_iso, now_iso
         ))
 
         cur.execute("""

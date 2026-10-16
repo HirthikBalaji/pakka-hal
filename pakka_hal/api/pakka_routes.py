@@ -1,9 +1,11 @@
 import uuid
 import json
 import base64
+import io
+from PIL import Image
 from datetime import datetime, timezone
 from typing import List, Optional, Dict, Any, Literal
-from fastapi import APIRouter, HTTPException, Body, UploadFile, File, Form
+from fastapi import APIRouter, HTTPException, Body, UploadFile, File, Form, Header
 from pydantic import BaseModel
 
 from pakka_hal.models.incident import (
@@ -11,13 +13,13 @@ from pakka_hal.models.incident import (
 )
 from pakka_hal.models.ledger import LedgerChainStatus
 from pakka_hal.storage.db import get_connection
-from pakka_hal.services.verifier import ClosureVerifier, wilson_score_interval
+from pakka_hal.services.verifier import ClosureVerifier, wilson_score_interval, compute_image_phash
 from pakka_hal.services.ledger import (
     append_ledger_entry, verify_ledger_chain, get_incident_ledger_trail
 )
 from pakka_hal.services.equity import EquityEstimator
 from pakka_hal.services.triage import TriageService
-from pakka_hal.config import city_config
+from pakka_hal.config import city_config, BASE_DIR
 
 router = APIRouter(prefix="/api/v1", tags=["Pakka Hal DPI Extensions"])
 
@@ -88,37 +90,66 @@ async def submit_closure(payload: ClosureSubmitRequest):
         updated_at=row["updated_at"]
     )
 
-    try:
-        after_bytes = base64.b64decode(payload.after_media_base64.split(",")[-1])
-    except Exception:
-        after_bytes = b"fake_image_bytes_for_testing"
+    # Worker identity validation
+    if not payload.worker_id or len(payload.worker_id.strip()) < 3:
+        raise HTTPException(status_code=400, detail="Valid worker_id credential required for closure submission.")
 
     closure_id = f"cls_{uuid.uuid4().hex[:8]}"
     now_iso = datetime.now(timezone.utc).isoformat()
+    media_dir = BASE_DIR / "static" / "media"
+    media_dir.mkdir(parents=True, exist_ok=True)
+
+    # Process and persist closure evidence photo
+    after_file_name = f"{closure_id}_after.jpg"
+    after_file_path = media_dir / after_file_name
+    try:
+        raw_b64 = payload.after_media_base64.split(",")[-1]
+        after_bytes = base64.b64decode(raw_b64)
+        img = Image.open(io.BytesIO(after_bytes))
+        img.convert("RGB").save(after_file_path, "JPEG")
+        after_media_url = f"/static/media/{after_file_name}"
+    except Exception:
+        after_bytes = b"fake_image_bytes_for_testing"
+        after_media_url = f"/static/media/{after_file_name}"
+
+    # Load original before image bytes from storage if available
+    before_bytes = None
+    if incident.before_media_url:
+        try:
+            rel_path = incident.before_media_url.lstrip("/")
+            before_file = BASE_DIR / rel_path
+            if before_file.exists():
+                with open(before_file, "rb") as bf:
+                    before_bytes = bf.read()
+        except Exception:
+            before_bytes = None
 
     closure = ClosureAttempt(
         closure_id=closure_id,
         incident_id=payload.incident_id,
         worker_id=payload.worker_id,
         timestamp=now_iso,
-        after_media_url=f"/media/{closure_id}.jpg",
+        after_media_url=after_media_url,
         worker_lat=payload.worker_lat,
         worker_lon=payload.worker_lon,
         distance_to_incident_m=0.0,
         notes=payload.notes
     )
 
+    # Compute perceptual hash of closure photo for cross-closure reuse detection
+    after_phash = compute_image_phash(after_bytes)
+
     # Save closure attempt
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""
         INSERT INTO closure_attempts (
-            closure_id, incident_id, worker_id, after_media_url, worker_lat,
+            closure_id, incident_id, worker_id, after_media_url, phash, worker_lat,
             worker_lon, distance_to_incident_m, timestamp, notes
-        ) VALUES (?, ?, ?, ?, ?, ?, 0.0, ?, ?)
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, 0.0, ?, ?)
     """, (
         closure_id, payload.incident_id, payload.worker_id, closure.after_media_url,
-        payload.worker_lat, payload.worker_lon, now_iso, payload.notes
+        after_phash, payload.worker_lat, payload.worker_lon, now_iso, payload.notes
     ))
     conn.commit()
     conn.close()
@@ -135,12 +166,12 @@ async def submit_closure(payload: ClosureSubmitRequest):
         }
     )
 
-    # Run verification
+    # Run multimodal verification with before & after cross-examination
     result = await verifier.verify_closure(
         incident=incident,
         closure=closure,
         after_image_bytes=after_bytes,
-        before_image_bytes=None,
+        before_image_bytes=before_bytes,
         citizen_feedback=None
     )
 
@@ -290,8 +321,15 @@ def get_dashboard_metrics():
 
 @router.get("/equity/silent-areas")
 def get_silent_areas():
-    """Returns the Thompson Sampling equity bandit audit recommendations (labeled simulated)."""
-    return equity_estimator.run_simulation_benchmark()
+    """Returns the Thompson Sampling equity bandit audit recommendations and live sector monitoring."""
+    sim_data = equity_estimator.run_simulation_benchmark()
+    live_data = equity_estimator.get_live_sector_equity()
+    return {
+        "simulation_benchmark": sim_data,
+        "live_database_equity": live_data,
+        # Preserve backwards compatibility for dashboard frontend
+        **sim_data
+    }
 
 @router.get("/human-queue")
 def get_human_queue():

@@ -85,17 +85,44 @@ class DedupService:
             matched_incident: Optional[CanonicalIncident]
             match_score: float
         """
+        t_lat = triage.location.lat if (triage.location and triage.location.lat is not None) else 30.7333
+        t_lon = triage.location.lon if (triage.location and triage.location.lon is not None) else 76.7794
+
+        # Spatial candidate bounding box (~350m radius) to utilize SQLite spatial indexes
+        lat_delta = 0.0035
+        lon_delta = 0.0040
+        lat_min, lat_max = t_lat - lat_delta, t_lat + lat_delta
+        lon_min, lon_max = t_lon - lon_delta, t_lon + lon_delta
+
         conn = get_connection()
         cur = conn.cursor()
-        cur.execute("""
-            SELECT incident_id, service_code, service_name, title, description,
-                   status, resolution_state, lat, lon, sector, reports_count,
-                   assigned_department, routing_confidence, routing_abstained,
-                   verification_score, before_media_url, after_media_url,
-                   latest_ledger_hash, created_at, updated_at
-            FROM canonical_incidents
-            WHERE status = 'open'
-        """)
+
+        if triage.category and triage.category != "OTHER":
+            cur.execute("""
+                SELECT incident_id, service_code, service_name, title, description,
+                       status, resolution_state, lat, lon, sector, reports_count,
+                       assigned_department, routing_confidence, routing_abstained,
+                       verification_score, before_media_url, after_media_url,
+                       latest_ledger_hash, created_at, updated_at
+                FROM canonical_incidents
+                WHERE status = 'open'
+                  AND service_code = ?
+                  AND lat BETWEEN ? AND ?
+                  AND lon BETWEEN ? AND ?
+            """, (triage.category, lat_min, lat_max, lon_min, lon_max))
+        else:
+            cur.execute("""
+                SELECT incident_id, service_code, service_name, title, description,
+                       status, resolution_state, lat, lon, sector, reports_count,
+                       assigned_department, routing_confidence, routing_abstained,
+                       verification_score, before_media_url, after_media_url,
+                       latest_ledger_hash, created_at, updated_at
+                FROM canonical_incidents
+                WHERE status = 'open'
+                  AND lat BETWEEN ? AND ?
+                  AND lon BETWEEN ? AND ?
+            """, (lat_min, lat_max, lon_min, lon_max))
+
         rows = cur.fetchall()
         conn.close()
 

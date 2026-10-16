@@ -12,8 +12,17 @@ from pakka_hal.services.dedup import haversine_distance_m
 from pakka_hal.services.llm import get_llm_provider
 from pakka_hal.storage.db import get_connection
 
+def hamming_distance(h1: str, h2: str) -> int:
+    """Computes bitwise Hamming distance between two hex hashes."""
+    try:
+        v1 = int(h1, 16)
+        v2 = int(h2, 16)
+        return bin(v1 ^ v2).count('1')
+    except Exception:
+        return 0 if h1 == h2 else 64
+
 def compute_image_phash(image_bytes: bytes) -> str:
-    """Computes a difference hash to detect identical or reused photos."""
+    """Computes a difference hash (dHash) to detect identical or reused photos."""
     try:
         img = Image.open(io.BytesIO(image_bytes)).convert('L').resize((9, 8), Image.Resampling.LANCZOS)
         pixels = list(img.getdata())
@@ -48,17 +57,27 @@ class ClosureVerifier:
     def __init__(self, provider_type: Optional[str] = None):
         self.llm = get_llm_provider(provider_type)
 
-    def check_photo_reuse(self, new_phash: str, current_closure_id: str) -> bool:
-        """Checks if the same photo hash has been used across previous closures."""
+    def check_photo_reuse(self, new_phash: str, current_closure_id: str, incident_id: Optional[str] = None) -> bool:
+        """Checks if the same photo hash (or near duplicate within 2 Hamming bits) was used in previous closures for another incident."""
         conn = get_connection()
         cur = conn.cursor()
-        cur.execute("""
-            SELECT closure_id FROM closure_attempts
-            WHERE closure_id != ? AND after_media_url LIKE ?
-        """, (current_closure_id, f"%{new_phash}%"))
-        row = cur.fetchone()
+        if incident_id:
+            cur.execute("""
+                SELECT closure_id, phash FROM closure_attempts
+                WHERE incident_id != ? AND closure_id != ? AND phash IS NOT NULL AND phash != ''
+            """, (incident_id, current_closure_id))
+        else:
+            cur.execute("""
+                SELECT closure_id, phash FROM closure_attempts
+                WHERE closure_id != ? AND phash IS NOT NULL AND phash != ''
+            """, (current_closure_id,))
+        rows = cur.fetchall()
         conn.close()
-        return bool(row)
+        for r in rows:
+            old_h = r["phash"]
+            if old_h == new_phash or hamming_distance(old_h, new_phash) <= 2:
+                return True
+        return False
 
     async def verify_closure(
         self,
@@ -83,23 +102,22 @@ class ClosureVerifier:
 
         # 2. Perceptual Hash Check (Reused photo check)
         phash_after = compute_image_phash(after_image_bytes)
-        phash_duplicate = self.check_photo_reuse(phash_after, closure.closure_id)
+        phash_duplicate = self.check_photo_reuse(phash_after, closure.closure_id, incident.incident_id)
 
-        # Check if identical to before image
+        # Check if identical or near-identical to before image via Hamming distance
         if before_image_bytes:
             phash_before = compute_image_phash(before_image_bytes)
-            if phash_after == phash_before or hashlib.md5(after_image_bytes).hexdigest() == hashlib.md5(before_image_bytes).hexdigest():
+            if phash_after == phash_before or hamming_distance(phash_after, phash_before) <= 2 or hashlib.md5(after_image_bytes).hexdigest() == hashlib.md5(before_image_bytes).hexdigest():
                 phash_duplicate = True
 
         if phash_duplicate:
             anomaly_flags.append("REUSED_PHOTO")
-            reasons.append("Identical photo submitted. Fraudulent closure flagged.")
+            reasons.append("Identical or duplicate photo submitted. Fraudulent closure flagged.")
 
         # 3. Vision Model Scene Evaluation
         context = {
             "distance_m": dist_m,
-            "category": incident.service_code,
-            "is_adversarial_negative": "adversarial" in closure.notes.lower() if closure.notes else False
+            "category": incident.service_code
         }
         p_same_loc, p_resolved, quality, llm_reasons = await self.llm.verify_closure(
             before_image_bytes=before_image_bytes,
@@ -134,22 +152,24 @@ class ClosureVerifier:
             (0.20 * citizen_score)
         )
 
-        if phash_duplicate or not geofence_passed:
-            final_posterior = min(0.30, raw_posterior * 0.5)
+        if phash_duplicate:
+            final_posterior = 0.0
+        elif not geofence_passed:
+            final_posterior = min(0.25, raw_posterior * 0.4)
         elif citizen_feedback == "not_fixed":
-            final_posterior = min(0.35, raw_posterior * 0.6)
+            final_posterior = min(0.30, raw_posterior * 0.5)
         else:
             final_posterior = raw_posterior
 
         final_posterior = round(max(0.0, min(1.0, final_posterior)), 3)
 
         # 6. Map to Verified States
-        if final_posterior >= 0.80 and not anomaly_flags:
-            verified_state = "fixed_verified"
+        if "REUSED_PHOTO" in anomaly_flags:
+            verified_state = "reopened"
         elif citizen_feedback == "not_fixed" or final_posterior < 0.40:
             verified_state = "disputed"
-        elif "REUSED_PHOTO" in anomaly_flags:
-            verified_state = "reopened"
+        elif final_posterior >= 0.80 and not anomaly_flags:
+            verified_state = "fixed_verified"
         else:
             verified_state = "fixed_unverified"
 

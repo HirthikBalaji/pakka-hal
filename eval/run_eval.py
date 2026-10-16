@@ -204,6 +204,35 @@ def evaluate_router() -> Dict[str, Any]:
         "abstention_recall": round(abstention_recall, 4)
     }
 
+def make_synthetic_test_image(pattern: str) -> bytes:
+    """Generates valid JPEG image bytes with distinct visual characteristics."""
+    import io
+    from PIL import Image, ImageDraw
+
+    img = Image.new("RGB", (128, 128), color=(200, 200, 200))
+    draw = ImageDraw.Draw(img)
+    if pattern == "before_defect":
+        # Scene background + dark defect spot
+        draw.rectangle([10, 10, 118, 50], fill=(120, 150, 180))
+        draw.rectangle([10, 51, 118, 118], fill=(90, 90, 90))
+        draw.ellipse([48, 70, 80, 102], fill=(20, 20, 20))
+    elif pattern == "after_repaired":
+        # Same scene background, defect repaired
+        draw.rectangle([10, 10, 118, 50], fill=(120, 150, 180))
+        draw.rectangle([10, 51, 118, 118], fill=(90, 90, 90))
+        draw.ellipse([48, 70, 80, 102], fill=(105, 105, 105))
+    elif pattern == "unrelated_site":
+        # Completely different scene composition and color distribution
+        draw.rectangle([0, 0, 128, 64], fill=(210, 60, 60))
+        draw.rectangle([0, 64, 128, 128], fill=(40, 170, 40))
+        draw.polygon([(64, 10), (20, 60), (108, 60)], fill=(240, 200, 50))
+    else:
+        draw.rectangle([0, 0, 128, 128], fill=(15, 15, 15))
+
+    buf = io.BytesIO()
+    img.save(buf, format="JPEG")
+    return buf.getvalue()
+
 async def evaluate_closure_verifier() -> Dict[str, Any]:
     print("\n--- 4. Evaluating Closure Verifier & Anomaly Detection ---")
     with open(DATA_DIR / "closure_eval_pairs.json", "r", encoding="utf-8") as f:
@@ -215,23 +244,26 @@ async def evaluate_closure_verifier() -> Dict[str, Any]:
     phash_duplicates_detected = 0
     total_reused = sum(1 for p in pairs if p["is_reused_photo"])
 
-    incident = CanonicalIncident(
-        incident_id="inc_eval_closure",
-        service_code="STREETLIGHT_OUT",
-        service_name="Streetlight",
-        title="Test Streetlight",
-        description="Broken lamp",
-        lat=30.7333,
-        lon=76.7725,
-        sector="SEC-22",
-        created_at="2026-10-04T12:00:00Z",
-        updated_at="2026-10-04T12:00:00Z"
-    )
+    before_image_bytes = make_synthetic_test_image("before_defect")
+    repaired_image_bytes = make_synthetic_test_image("after_repaired")
+    unrelated_image_bytes = make_synthetic_test_image("unrelated_site")
 
     for p in pairs:
+        inc = CanonicalIncident(
+            incident_id=f"inc_{p['pair_id']}",
+            service_code="STREETLIGHT_OUT",
+            service_name="Streetlight",
+            title="Test Streetlight",
+            description="Broken lamp",
+            lat=30.7333,
+            lon=76.7725,
+            sector="SEC-22",
+            created_at="2026-10-04T12:00:00Z",
+            updated_at="2026-10-04T12:00:00Z"
+        )
         closure = ClosureAttempt(
             closure_id=p["pair_id"],
-            incident_id=incident.incident_id,
+            incident_id=inc.incident_id,
             worker_id="WORKER_TEST",
             timestamp="2026-10-04T13:00:00Z",
             after_media_url="/media/test.jpg",
@@ -241,17 +273,18 @@ async def evaluate_closure_verifier() -> Dict[str, Any]:
             notes=p["notes"]
         )
 
-        before_bytes = b"before_image_bytes_fixed"
         if p["is_reused_photo"]:
-            after_bytes = b"before_image_bytes_fixed"  # Identical photo to trigger pHash
+            after_bytes = before_image_bytes  # Identical photo to trigger real dHash collision
+        elif not p["ground_truth_fixed"] and p["worker_distance_m"] < 100:
+            after_bytes = unrelated_image_bytes  # Real visual discrepancy
         else:
-            after_bytes = b"after_image_bytes_repaired"
+            after_bytes = repaired_image_bytes   # Genuine repair
 
         res = await verifier.verify_closure(
-            incident=incident,
+            incident=inc,
             closure=closure,
             after_image_bytes=after_bytes,
-            before_image_bytes=before_bytes
+            before_image_bytes=before_image_bytes
         )
 
         y_true.append(1 if p["ground_truth_fixed"] else 0)
@@ -334,6 +367,20 @@ async def main():
     print("=====================================================================")
     print("      PAKKA HAL • COMPREHENSIVE EVALUATION HARNESS (EVAL_PLAN.MD)    ")
     print("=====================================================================")
+
+    # Ensure dedicated clean evaluation database
+    eval_db_file = ROOT_DIR / "eval_bench.db"
+    os.environ["DATABASE_URL"] = f"sqlite:///{eval_db_file}"
+    for ext in ["", "-wal", "-shm"]:
+        f = Path(f"{eval_db_file}{ext}")
+        if f.exists():
+            try:
+                f.unlink()
+            except Exception:
+                pass
+
+    from pakka_hal.storage.db import init_db
+    init_db()
 
     triage_res = await evaluate_triage()
     dedup_res = await evaluate_dedup()
@@ -453,4 +500,14 @@ All core algorithmic subsystems of **Pakka Hal** have been evaluated against dou
     print("=====================================================================")
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    eval_db_file = ROOT_DIR / "eval_bench.db"
+    try:
+        asyncio.run(main())
+    finally:
+        for ext in ["", "-wal", "-shm"]:
+            f = Path(f"{eval_db_file}{ext}")
+            if f.exists():
+                try:
+                    f.unlink()
+                except Exception:
+                    pass

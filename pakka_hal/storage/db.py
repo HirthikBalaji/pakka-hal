@@ -1,15 +1,23 @@
+import os
 import sqlite3
 import json
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 from pakka_hal.config import DATABASE_URL, BASE_DIR
 
-DB_PATH = Path(DATABASE_URL.replace("sqlite:///", ""))
-if not DB_PATH.is_absolute():
-    DB_PATH = BASE_DIR / DB_PATH
+def get_db_path() -> Path:
+    db_url = os.getenv("DATABASE_URL", DATABASE_URL)
+    p = Path(db_url.replace("sqlite:///", ""))
+    if not p.is_absolute():
+        p = BASE_DIR / p
+    return p
+
+DB_PATH = get_db_path()
 
 def get_connection() -> sqlite3.Connection:
-    conn = sqlite3.connect(str(DB_PATH))
+    conn = sqlite3.connect(str(get_db_path()), timeout=30.0)
+    conn.execute("PRAGMA journal_mode=WAL")
+    conn.execute("PRAGMA synchronous=NORMAL")
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -85,6 +93,7 @@ def init_db():
         incident_id TEXT,
         worker_id TEXT,
         after_media_url TEXT,
+        phash TEXT,
         worker_lat REAL,
         worker_lon REAL,
         distance_to_incident_m REAL,
@@ -93,6 +102,11 @@ def init_db():
         FOREIGN KEY(incident_id) REFERENCES canonical_incidents(incident_id)
     )
     """)
+
+    try:
+        cur.execute("ALTER TABLE closure_attempts ADD COLUMN phash TEXT")
+    except Exception:
+        pass
 
     # Verifications
     cur.execute("""
@@ -117,13 +131,13 @@ def init_db():
     cur.execute("""
     CREATE TABLE IF NOT EXISTS ledger (
         entry_id TEXT PRIMARY KEY,
-        seq INTEGER,
+        seq INTEGER UNIQUE,
         timestamp TEXT,
         incident_id TEXT,
         event_type TEXT,
         payload_hash TEXT,
         prev_hash TEXT,
-        entry_hash TEXT,
+        entry_hash TEXT UNIQUE,
         metadata_json TEXT
     )
     """)
@@ -141,6 +155,13 @@ def init_db():
         created_at TEXT
     )
     """)
+
+    # Indexes for spatial queries, dedup scalability, and ledger traversal
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_canonical_spatial ON canonical_incidents(status, service_code, lat, lon)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_canonical_sector ON canonical_incidents(sector)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_service_requests_canon ON service_requests(canonical_incident_id)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_ledger_seq ON ledger(seq)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_closure_incident ON closure_attempts(incident_id)")
 
     conn.commit()
     conn.close()

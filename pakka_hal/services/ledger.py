@@ -9,6 +9,10 @@ from pakka_hal.models.ledger import LedgerEntry, LedgerChainStatus
 
 GENESIS_HASH = hashlib.sha256(HASH_CHAIN_SEED.encode("utf-8")).hexdigest()
 
+import threading
+
+LEDGER_LOCK = threading.Lock()
+
 def compute_payload_hash(payload: Dict[str, Any]) -> str:
     """Computes deterministic SHA-256 hash of a JSON-serializable dictionary."""
     canonical_json = json.dumps(payload, sort_keys=True, separators=(',', ':'))
@@ -20,39 +24,51 @@ def compute_entry_hash(prev_hash: str, timestamp: str, incident_id: str, event_t
     return hashlib.sha256(message.encode("utf-8")).hexdigest()
 
 def append_ledger_entry(incident_id: str, event_type: str, payload: Dict[str, Any], metadata: Optional[Dict[str, Any]] = None) -> LedgerEntry:
-    """Appends an event to the linear cryptographic hash chain."""
-    conn = get_connection()
-    cur = conn.cursor()
+    """
+    Appends an event to the linear cryptographic hash chain.
+    Thread-safe and atomic via LEDGER_LOCK and SQLite BEGIN IMMEDIATE.
+    """
+    with LEDGER_LOCK:
+        conn = get_connection()
+        conn.isolation_level = None  # Explicit transaction control
+        cur = conn.cursor()
+        cur.execute("BEGIN IMMEDIATE")
 
-    cur.execute("SELECT seq, entry_hash FROM ledger ORDER BY seq DESC LIMIT 1")
-    last_row = cur.fetchone()
+        try:
+            cur.execute("SELECT seq, entry_hash FROM ledger ORDER BY seq DESC LIMIT 1")
+            last_row = cur.fetchone()
 
-    if last_row:
-        prev_seq = last_row["seq"]
-        prev_hash = last_row["entry_hash"]
-        seq = prev_seq + 1
-    else:
-        seq = 1
-        prev_hash = GENESIS_HASH
+            if last_row:
+                prev_seq = last_row["seq"]
+                prev_hash = last_row["entry_hash"]
+                seq = prev_seq + 1
+            else:
+                seq = 1
+                prev_hash = GENESIS_HASH
 
-    now_iso = datetime.now(timezone.utc).isoformat()
-    entry_id = f"led_{uuid.uuid4().hex[:12]}"
-    payload_hash = compute_payload_hash(payload)
-    entry_hash = compute_entry_hash(prev_hash, now_iso, incident_id, event_type, payload_hash)
+            now_iso = datetime.now(timezone.utc).isoformat()
+            entry_id = f"led_{uuid.uuid4().hex[:12]}"
+            payload_hash = compute_payload_hash(payload)
+            entry_hash = compute_entry_hash(prev_hash, now_iso, incident_id, event_type, payload_hash)
 
-    metadata_dict = metadata or {}
-    cur.execute("""
-        INSERT INTO ledger (entry_id, seq, timestamp, incident_id, event_type, payload_hash, prev_hash, entry_hash, metadata_json)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (entry_id, seq, now_iso, incident_id, event_type, payload_hash, prev_hash, entry_hash, json.dumps(metadata_dict)))
+            metadata_dict = metadata or {}
+            cur.execute("""
+                INSERT INTO ledger (entry_id, seq, timestamp, incident_id, event_type, payload_hash, prev_hash, entry_hash, metadata_json)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (entry_id, seq, now_iso, incident_id, event_type, payload_hash, prev_hash, entry_hash, json.dumps(metadata_dict)))
 
-    # Update canonical incident's latest_ledger_hash
-    cur.execute("""
-        UPDATE canonical_incidents SET latest_ledger_hash = ?, updated_at = ? WHERE incident_id = ?
-    """, (entry_hash, now_iso, incident_id))
+            # Update canonical incident's latest_ledger_hash
+            cur.execute("""
+                UPDATE canonical_incidents SET latest_ledger_hash = ?, updated_at = ? WHERE incident_id = ?
+            """, (entry_hash, now_iso, incident_id))
 
-    conn.commit()
-    conn.close()
+            cur.execute("COMMIT")
+        except Exception:
+            cur.execute("ROLLBACK")
+            conn.close()
+            raise
+
+        conn.close()
 
     return LedgerEntry(
         entry_id=entry_id,

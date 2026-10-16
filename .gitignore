@@ -46,6 +46,7 @@ out/
 *.sqlite
 *.sqlite3
 uploads/
+static/media/
 scratch/
 .system_generated/
 *.log

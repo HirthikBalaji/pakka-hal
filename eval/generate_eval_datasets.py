@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-DATA_DIR = Path(r"C:\Users\Suz Machine Tech\GDG\eval\data")
+DATA_DIR = Path(__file__).resolve().parent / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 # 1. DEDUPLICATION EVALUATION DATASET
@@ -103,8 +103,7 @@ for i in range(10):
         "ground_truth_fixed": False,
         "worker_distance_m": 25.0,
         "is_reused_photo": False,
-        "defect_unresolved": True,
-        "notes": "adversarial: defect still present."
+        "notes": "Patching deferred; barricade placed."
     })
 
 with open(DATA_DIR / "closure_eval_pairs.json", "w", encoding="utf-8") as f:

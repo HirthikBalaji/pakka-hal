@@ -2,10 +2,12 @@ import re
 import math
 import hashlib
 import uuid
-from typing import Dict, Any, Optional, List, Tuple
+import io
+from PIL import Image
 from pakka_hal.services.llm.base import LLMProvider
 from pakka_hal.models.incident import TriageResult, LocationInfo, EvidenceItem
 from pakka_hal.config import city_config
+from pakka_hal.services.emergency import check_emergency_safety_net
 
 # Comprehensive Emergency keywords across English, Hindi (Deva/Latn), and Punjabi (Guru/Latn)
 EMERGENCY_KEYWORDS = [
@@ -108,13 +110,9 @@ class MockLLMProvider(LLMProvider):
         full_text = f"{text} {audio_transcript or ''}".strip().lower()
 
         # 1. Emergency safety-net check
-        is_emergency = False
-        emergency_details = None
-        for kw in EMERGENCY_KEYWORDS:
-            if kw.lower() in full_text:
-                is_emergency = True
-                emergency_details = f"Emergency keyword detected: '{kw}'. Immediate safety redirect required."
-                break
+        emergency_hit = check_emergency_safety_net(full_text)
+        is_emergency = bool(emergency_hit)
+        emergency_details = emergency_hit
 
         # 2. Language detection
         has_gurmukhi = any('\u0A00' <= char <= '\u0A7F' for char in full_text)
@@ -198,26 +196,61 @@ class MockLLMProvider(LLMProvider):
         context: Dict[str, Any]
     ) -> Tuple[float, float, str, List[str]]:
         reasons = []
+        quality = "ok"
 
-        # Adversarial check: identical image reused (pHash collision)
-        if before_image_bytes:
-            h_before = hashlib.md5(before_image_bytes).hexdigest()
-            h_after = hashlib.md5(after_image_bytes).hexdigest()
-            if h_before == h_after:
-                reasons.append("Identical photo submitted for after-state. Fraudulent closure flagged.")
-                return 1.0, 0.0, "ok", reasons
+        # 1. Evaluate image quality via PIL pixel analysis
+        try:
+            img_after = Image.open(io.BytesIO(after_image_bytes)).convert("L")
+            pixels_after = list(img_after.getdata())
+            if pixels_after:
+                brightness = sum(pixels_after) / len(pixels_after)
+                variance = sum((p - brightness) ** 2 for p in pixels_after) / len(pixels_after)
+                if variance < 20.0:
+                    quality = "blurry"
+                    reasons.append("Image lacks high-frequency spatial detail (blurry or uniform).")
+                elif brightness < 20.0:
+                    quality = "dark"
+                    reasons.append("Image is severely underexposed (dark).")
+                elif brightness > 245.0:
+                    quality = "poor"
+                    reasons.append("Image is overexposed / washed out.")
+        except Exception:
+            quality = "ok"
 
+        # 2. Geofence evaluation
         dist = context.get("distance_m", 0.0)
         if dist > 100.0:
             reasons.append(f"Worker location ({dist:.1f}m) exceeds 100m geofence radius.")
-            return 0.2, 0.3, "ok", reasons
+            return 0.20, 0.25, quality, reasons
 
-        if context.get("is_adversarial_negative"):
-            reasons.append("AI Vision: defect still visible or unrelated site photographed.")
-            return 0.35, 0.15, "ok", reasons
+        # 3. Visual correspondence and resolution evaluation
+        from pakka_hal.services.verifier import compute_image_phash, hamming_distance
 
-        reasons.append("AI Vision: background alignment verified and defect resolved.")
-        return 0.88, 0.92, "ok", reasons
+        if before_image_bytes:
+            phash_before = compute_image_phash(before_image_bytes)
+            phash_after = compute_image_phash(after_image_bytes)
+            h_dist = hamming_distance(phash_before, phash_after)
+
+            # Reused photo check (exact duplicate or identical scene with no repair)
+            if h_dist <= 2 or hashlib.md5(before_image_bytes).hexdigest() == hashlib.md5(after_image_bytes).hexdigest():
+                reasons.append("Identical photo submitted for after-state. Fraudulent closure flagged.")
+                return 1.0, 0.0, quality, reasons
+
+            # Substantial scene shift (different location entirely)
+            if h_dist > 30:
+                reasons.append(f"Visual discrepancy: High perceptual difference ({h_dist} bits). Unrelated location photographed.")
+                return 0.35, 0.20, quality, reasons
+
+            # Same location with confirmed defect resolution
+            reasons.append("AI Vision: Scene background alignment verified and defect resolution confirmed.")
+            return 0.90, 0.92, quality, reasons
+
+        # Single after-image mode
+        if quality in ["blurry", "dark", "poor"]:
+            return 0.60, 0.45, quality, reasons
+
+        reasons.append("AI Vision: Defect resolution verified on site.")
+        return 0.88, 0.90, "ok", reasons
 
     async def get_embedding(self, text: str) -> List[float]:
         words = re.findall(r'\w+', text.lower())

@@ -21,28 +21,60 @@ class OwnershipRouter:
             for sc in d.get("service_codes", []):
                 self.dept_by_code[sc] = d
 
+    def _resolve_zonal_office(self, sector: str) -> str:
+        """Resolves Chandigarh municipal engineering sub-division based on sector grid."""
+        import re
+        match = re.search(r"(\d+)", sector)
+        if match:
+            num = int(match.group(1))
+            if num <= 28:
+                return "Division 1 (North Zone)"
+            elif num <= 47:
+                return "Division 2 (South Zone)"
+            else:
+                return "Division 3 (South-West Zone)"
+        if "IT" in sector.upper() or "IND" in sector.upper():
+            return "Division 4 (East/Industrial Zone)"
+        return "Central Zone"
+
     def route_incident(self, triage: TriageResult) -> RoutingDecision:
         category = triage.category
         sector = triage.location.sector or "Unknown"
+        sub_division = self._resolve_zonal_office(sector)
 
-        # Check if category is known
+        # 1. Check if category is known in municipal charter
         if category in self.dept_by_code:
             dept = self.dept_by_code[category]
             base_conf = triage.field_confidence.get("category", 0.85)
 
-            # If triage confidence was low, penalize
+            # Check cross-cutting ambiguity in description
+            text_lower = (triage.summary_en or "").lower()
+            competing_depts = []
+            for sc, d in self.dept_by_code.items():
+                if d["id"] != dept["id"] and sc.lower().replace("_", " ") in text_lower:
+                    competing_depts.append(d)
+
+            if competing_depts and base_conf < 0.80:
+                # Borderline jurisdictional ambiguity
+                return self._abstain(
+                    triage,
+                    f"Cross-jurisdictional ambiguity between {dept['name']} and {competing_depts[0]['name']}."
+                )
+
+            # If triage confidence was low, penalize and abstain
             if base_conf < TAU_ABSTAIN:
                 return self._abstain(
                     triage,
                     f"Category confidence ({base_conf:.2f}) below threshold {TAU_ABSTAIN:.2f}."
                 )
 
+            resolved_dept_name = f"{dept['name']} - {sub_division}"
             return RoutingDecision(
                 department_id=dept["id"],
-                department_name=dept["name"],
+                department_name=resolved_dept_name,
                 confidence=base_conf,
                 abstained=False,
-                reason=f"Rule-matched '{category}' to {dept['name']} for sector {sector}."
+                reason=f"Matched '{category}' to {dept['name']} for sector {sector} ({sub_division})."
             )
         else:
             return self._abstain(
